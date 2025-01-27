@@ -50,66 +50,6 @@ public final class WWAdvancementProvider extends FabricAdvancementProvider {
 		AdvancementHolder husbandry = Advancement.Builder.advancement().build(WWConstants.vanillaId("husbandry/root"));
 
 		Advancement.Builder.advancement()
-			.parent(husbandry)
-			.display(
-				WWItems.CRAB_BUCKET,
-				Component.translatable("wilderwild.advancements.husbandry.crab_in_a_bucket.title"),
-				Component.translatable("wilderwild.advancements.husbandry.crab_in_a_bucket.description"),
-				null,
-				AdvancementType.TASK,
-				true,
-				true,
-				false
-			)
-			.addCriterion("crab_bucket", FilledBucketTrigger.TriggerInstance.filledBucket(ItemPredicate.Builder.item().of(items, WWItems.CRAB_BUCKET)))
-			.save(writer, WWConstants.string("husbandry/crab_in_a_bucket"));
-
-		Advancement.Builder.advancement()
-			.parent(husbandry)
-			.display(
-				WWItems.FIREFLY_BOTTLE,
-				Component.translatable("wilderwild.advancements.husbandry.firefly_in_a_bottle.title"),
-				Component.translatable("wilderwild.advancements.husbandry.firefly_in_a_bottle.description"),
-				null,
-				AdvancementType.TASK,
-				true,
-				true,
-				false
-			)
-			.addCriterion("firefly_bottled", MobBottleTrigger.TriggerInstance.mobBottle(ItemPredicate.Builder.item().of(items, WWItems.FIREFLY_BOTTLE)))
-			.save(writer, WWConstants.string("husbandry/firefly_in_a_bottle"));
-
-		Advancement.Builder.advancement()
-			.parent(husbandry)
-			.display(
-				WWItems.BUTTERFLY_BOTTLE,
-				Component.translatable("wilderwild.advancements.husbandry.butterfly_in_a_bottle.title"),
-				Component.translatable("wilderwild.advancements.husbandry.butterfly_in_a_bottle.description"),
-				null,
-				AdvancementType.TASK,
-				true,
-				true,
-				false
-			)
-			.addCriterion("butterfly_bottled", MobBottleTrigger.TriggerInstance.mobBottle(ItemPredicate.Builder.item().of(items, WWItems.BUTTERFLY_BOTTLE)))
-			.save(writer, WWConstants.string("husbandry/butterfly_in_a_bottle"));
-
-		Advancement.Builder.advancement()
-			.parent(husbandry)
-			.display(
-				WWItems.JELLYFISH_BUCKET,
-				Component.translatable("wilderwild.advancements.husbandry.jellyfish_in_a_bucket.title"),
-				Component.translatable("wilderwild.advancements.husbandry.jellyfish_in_a_bucket.description"),
-				null,
-				AdvancementType.TASK,
-				true,
-				true,
-				false
-			)
-			.addCriterion("jellyfish_bucket", FilledBucketTrigger.TriggerInstance.filledBucket(ItemPredicate.Builder.item().of(items, WWItems.JELLYFISH_BUCKET)))
-			.save(writer, WWConstants.string("husbandry/jellyfish_in_a_bucket"));
-
-		Advancement.Builder.advancement()
 			.parent(adventure)
 			.display(
 				WWBlocks.NULL_BLOCK,

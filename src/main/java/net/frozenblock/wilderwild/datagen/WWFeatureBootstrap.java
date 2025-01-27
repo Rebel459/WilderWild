@@ -23,14 +23,6 @@ import java.util.List;
 import net.frozenblock.lib.worldgen.feature.api.FrozenConfiguredFeatureUtils;
 import net.frozenblock.lib.worldgen.feature.api.FrozenFeatureUtils;
 import net.frozenblock.lib.worldgen.feature.api.FrozenPlacementUtils;
-import net.frozenblock.wilderwild.worldgen.feature.configured.WWCaveConfigured;
-import net.frozenblock.wilderwild.worldgen.feature.configured.WWConfiguredFeatures;
-import net.frozenblock.wilderwild.worldgen.feature.configured.WWMiscConfigured;
-import net.frozenblock.wilderwild.worldgen.feature.configured.WWTreeConfigured;
-import net.frozenblock.wilderwild.worldgen.feature.placed.WWCavePlaced;
-import net.frozenblock.wilderwild.worldgen.feature.placed.WWMiscPlaced;
-import net.frozenblock.wilderwild.worldgen.feature.placed.WWPlacedFeatures;
-import net.frozenblock.wilderwild.worldgen.feature.placed.WWTreePlaced;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
@@ -49,10 +41,6 @@ public final class WWFeatureBootstrap {
 
 		FrozenFeatureUtils.BOOTSTRAP_CONTEXT = (BootstrapContext) entries;
 
-		WWTreeConfigured.registerTreeConfigured(entries);
-		WWMiscConfigured.registerMiscConfigured();
-		WWCaveConfigured.registerCaveConfigured(entries);
-		WWConfiguredFeatures.registerConfiguredFeatures(entries);
 	}
 
 	public static void bootstrapPlaced(BootstrapContext<PlacedFeature> entries) {
@@ -61,10 +49,6 @@ public final class WWFeatureBootstrap {
 
 		FrozenFeatureUtils.BOOTSTRAP_CONTEXT = (BootstrapContext) entries;
 
-		WWTreePlaced.registerTreePlaced();
-		WWMiscPlaced.registerMiscPlaced(entries);
-		WWCavePlaced.registerCavePlaced(entries);
-		WWPlacedFeatures.registerPlacedFeatures(entries);
 	}
 
 	/**

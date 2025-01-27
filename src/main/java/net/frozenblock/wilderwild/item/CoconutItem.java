@@ -18,7 +18,6 @@
 
 package net.frozenblock.wilderwild.item;
 
-import net.frozenblock.wilderwild.entity.CoconutProjectile;
 import net.frozenblock.wilderwild.registry.WWSounds;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
@@ -37,7 +36,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import org.jetbrains.annotations.NotNull;
 
-public class CoconutItem extends BlockItem implements ProjectileItem {
+public class CoconutItem extends BlockItem  {
 
 	public CoconutItem(@NotNull Block block, @NotNull Properties properties) {
 		super(block, properties);
@@ -68,9 +67,6 @@ public class CoconutItem extends BlockItem implements ProjectileItem {
 			0.5F,
 			0.4F / (level.getRandom().nextFloat() * 0.4F + 0.8F)
 		);
-		if (!level.isClientSide) {
-			Projectile.spawnProjectileFromRotation(CoconutProjectile::new, (ServerLevel) level, itemStack, player, 0F, 0.8F, 1.4F);
-		}
 		player.awardStat(Stats.ITEM_USED.get(this));
 		if (!player.getAbilities().instabuild) {
 			itemStack.shrink(1);
@@ -78,15 +74,4 @@ public class CoconutItem extends BlockItem implements ProjectileItem {
 		return InteractionResult.SUCCESS;
 	}
 
-	@Override
-	@NotNull
-	public Projectile asProjectile(Level level, Position position, ItemStack stack, Direction direction) {
-		return new CoconutProjectile(level, position.x(), position.y(), position.z(), stack);
-	}
-
-	@Override
-	@NotNull
-	public DispenseConfig createDispenseConfig() {
-		return DispenseConfig.builder().uncertainty(9F).power(0.75F).build();
-	}
 }

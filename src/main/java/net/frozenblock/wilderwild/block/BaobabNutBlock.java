@@ -109,11 +109,6 @@ public class BaobabNutBlock extends SaplingBlock {
 	}
 
 	@Override
-	public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
-		return state.is(this) && (isHanging(state) ? level.getBlockState(pos.above()).is(WWBlocks.BAOBAB_LEAVES) : super.canSurvive(state, level, pos));
-	}
-
-	@Override
 	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
 		if (state.is(this) && level.getMaxLocalRawBrightness(pos.above()) >= 9) {
 			if (!isHanging(state)) {

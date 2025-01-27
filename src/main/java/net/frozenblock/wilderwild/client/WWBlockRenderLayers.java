@@ -34,10 +34,6 @@ public final class WWBlockRenderLayers {
 		renderLayerRegistry.putBlock(WWBlocks.SEEDING_DANDELION, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.POTTED_CARNATION, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.POTTED_SEEDING_DANDELION, RenderType.cutout());
-		renderLayerRegistry.putBlock(WWBlocks.POTTED_BAOBAB_NUT, RenderType.cutout());
-		renderLayerRegistry.putBlock(WWBlocks.POTTED_CYPRESS_SAPLING, RenderType.cutout());
-		renderLayerRegistry.putBlock(WWBlocks.POTTED_COCONUT, RenderType.cutout());
-		renderLayerRegistry.putBlock(WWBlocks.POTTED_MAPLE_SAPLING, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.POTTED_BIG_DRIPLEAF, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.POTTED_SMALL_DRIPLEAF, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.POTTED_SHORT_GRASS, RenderType.cutout());
@@ -54,8 +50,6 @@ public final class WWBlockRenderLayers {
 		renderLayerRegistry.putBlock(WWBlocks.PASQUEFLOWER, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.POTTED_PASQUEFLOWER, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.POLLEN, RenderType.cutout());
-		renderLayerRegistry.putBlock(WWBlocks.PALE_MUSHROOM, RenderType.cutout());
-		renderLayerRegistry.putBlock(WWBlocks.POTTED_PALE_MUSHROOM, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.MYCELIUM_GROWTH, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.ECHO_GLASS, RenderType.translucent());
 		renderLayerRegistry.putBlock(WWBlocks.HANGING_TENDRIL, RenderType.cutout());
@@ -73,10 +67,6 @@ public final class WWBlockRenderLayers {
 		renderLayerRegistry.putBlock(WWBlocks.CYPRESS_TRAPDOOR, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.PALM_TRAPDOOR, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.MAPLE_TRAPDOOR, RenderType.cutout());
-		renderLayerRegistry.putBlock(WWBlocks.BAOBAB_NUT, RenderType.cutout());
-		renderLayerRegistry.putBlock(WWBlocks.CYPRESS_SAPLING, RenderType.cutout());
-		renderLayerRegistry.putBlock(WWBlocks.COCONUT, RenderType.cutout());
-		renderLayerRegistry.putBlock(WWBlocks.MAPLE_SAPLING, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.GLORY_OF_THE_SNOW, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.WHITE_GLORY_OF_THE_SNOW_PETALS, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.BLUE_GLORY_OF_THE_SNOW_PETALS, RenderType.cutout());
@@ -85,7 +75,6 @@ public final class WWBlockRenderLayers {
 		renderLayerRegistry.putBlock(WWBlocks.BUSH, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.PRICKLY_PEAR_CACTUS, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.TERMITE_MOUND, RenderType.solid());
-		renderLayerRegistry.putBlock(WWBlocks.DISPLAY_LANTERN, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.HOLLOWED_ACACIA_LOG, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.HOLLOWED_BAOBAB_LOG, RenderType.cutout());
 		renderLayerRegistry.putBlock(WWBlocks.HOLLOWED_BIRCH_LOG, RenderType.cutout());

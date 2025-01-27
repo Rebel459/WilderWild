@@ -54,12 +54,10 @@ import net.frozenblock.wilderwild.config.WWAmbienceAndMiscConfig;
 import net.frozenblock.wilderwild.config.WWBlockConfig;
 import net.frozenblock.wilderwild.config.WWEntityConfig;
 import net.frozenblock.wilderwild.config.WWWorldgenConfig;
-import net.frozenblock.wilderwild.registry.WWBiomes;
 import net.frozenblock.wilderwild.registry.WWBlockEntityTypes;
 import net.frozenblock.wilderwild.registry.WWBlockStateProperties;
 import net.frozenblock.wilderwild.registry.WWBlocks;
 import static net.frozenblock.wilderwild.registry.WWBlocks.*;
-import net.frozenblock.wilderwild.registry.WWEntityTypes;
 import net.frozenblock.wilderwild.registry.WWItems;
 import net.frozenblock.wilderwild.registry.WWMobEffects;
 import net.frozenblock.wilderwild.registry.WWSoundTypes;
@@ -323,8 +321,6 @@ public class FrozenLibIntegration extends ModIntegration {
 			OAK_SAPLING,
 			PALE_OAK_SAPLING,
 			SPRUCE_SAPLING,
-			CYPRESS_SAPLING,
-			MAPLE_SAPLING,
 			BUSH
 		}, SAPLING, () -> WWBlockConfig.get().blockSounds.saplingSounds);
 		addBlocks(new Block[]{
@@ -336,16 +332,13 @@ public class FrozenLibIntegration extends ModIntegration {
 			OAK_LEAVES,
 			PALE_OAK_LEAVES,
 			SPRUCE_LEAVES,
-			BAOBAB_LEAVES,
 			CYPRESS_LEAVES,
-			PALM_FRONDS,
 			YELLOW_MAPLE_LEAVES,
 			ORANGE_MAPLE_LEAVES,
 			RED_MAPLE_LEAVES
 		}, LEAVES, () -> WWBlockConfig.get().blockSounds.leafSounds);
 		addBlocks(new Block[]{YELLOW_MAPLE_LEAF_LITTER, ORANGE_MAPLE_LEAF_LITTER, RED_MAPLE_LEAF_LITTER}, LEAVES, () -> WWBlockConfig.get().blockSounds.leafSounds);
 		addBlocks(new Block[]{Blocks.LILY_PAD, FLOWERING_LILY_PAD}, WWSoundTypes.LILY_PAD, () -> WWBlockConfig.get().blockSounds.lilyPadSounds);
-		addBlocks(new Block[]{RED_MUSHROOM, BROWN_MUSHROOM, PALE_MUSHROOM}, MUSHROOM, () -> WWBlockConfig.get().blockSounds.mushroomBlockSounds);
 		addBlocks(new Block[]{RED_MUSHROOM_BLOCK, BROWN_MUSHROOM_BLOCK, PALE_MUSHROOM_BLOCK, MUSHROOM_STEM}, MUSHROOM_BLOCK, () -> WWBlockConfig.get().blockSounds.mushroomBlockSounds);
 		addBlock(PODZOL, SoundType.ROOTED_DIRT, () -> WWBlockConfig.get().blockSounds.podzolSounds);
 		addBlock(Blocks.REINFORCED_DEEPSLATE, WWSoundTypes.REINFORCED_DEEPSLATE, () -> WWBlockConfig.get().blockSounds.reinforcedDeepslateSounds);
@@ -354,21 +347,6 @@ public class FrozenLibIntegration extends ModIntegration {
 		addBlock(WITHER_ROSE, SoundType.SWEET_BERRY_BUSH, () -> WWBlockConfig.get().blockSounds.witherRoseSounds);
 		addBlock(MAGMA_BLOCK, MAGMA, () -> WWBlockConfig.get().blockSounds.magmaSounds);
 		addBlocks(new Block[]{PUMPKIN, CARVED_PUMPKIN, JACK_O_LANTERN, Blocks.MELON}, WWSoundTypes.MELON, () -> WWBlockConfig.get().blockSounds.melonSounds);
-
-		WolfVariantBiomeRegistry.register(WWBiomes.SNOWY_DYING_MIXED_FOREST, WolfVariants.ASHEN);
-		WolfVariantBiomeRegistry.register(WWBiomes.RAINFOREST, WolfVariants.WOODS);
-		WolfVariantBiomeRegistry.register(WWBiomes.SEMI_BIRCH_FOREST, WolfVariants.WOODS);
-		WolfVariantBiomeRegistry.register(WWBiomes.DYING_FOREST, WolfVariants.WOODS);
-		WolfVariantBiomeRegistry.register(WWBiomes.MIXED_FOREST, WolfVariants.WOODS);
-		WolfVariantBiomeRegistry.register(WWBiomes.SPARSE_FOREST, WolfVariants.WOODS);
-		WolfVariantBiomeRegistry.register(WWBiomes.PARCHED_FOREST, WolfVariants.WOODS);
-		WolfVariantBiomeRegistry.register(WWBiomes.OLD_GROWTH_BIRCH_TAIGA, WolfVariants.PALE);
-		WolfVariantBiomeRegistry.register(WWBiomes.BIRCH_TAIGA, WolfVariants.PALE);
-		WolfVariantBiomeRegistry.register(WWBiomes.DYING_MIXED_FOREST, WolfVariants.PALE);
-		WolfVariantBiomeRegistry.register(WWBiomes.DARK_TAIGA, WolfVariants.PALE);
-		WolfVariantBiomeRegistry.register(WWBiomes.SNOWY_OLD_GROWTH_PINE_TAIGA, WolfVariants.BLACK);
-		WolfVariantBiomeRegistry.register(WWBiomes.TEMPERATE_RAINFOREST, WolfVariants.CHESTNUT);
-		WolfVariantBiomeRegistry.register(WWBiomes.MAPLE_FOREST, WolfVariants.CHESTNUT);
 
 		if (WWWorldgenConfig.get().decayTrailRuins) {
 			StructureProcessorApi.addProcessor(
@@ -414,9 +392,7 @@ public class FrozenLibIntegration extends ModIntegration {
 						new BlockStateRespectingProcessorRule(new BlockMatchTest(JUNGLE_PLANKS), AlwaysTrueTest.INSTANCE, PALM_PLANKS),
 						new BlockStateRespectingProcessorRule(new BlockMatchTest(JUNGLE_PRESSURE_PLATE), AlwaysTrueTest.INSTANCE, PALM_PRESSURE_PLATE),
 						new BlockStateRespectingProcessorRule(new BlockMatchTest(JUNGLE_SLAB), AlwaysTrueTest.INSTANCE, PALM_SLAB),
-						new BlockStateRespectingProcessorRule(new BlockMatchTest(JUNGLE_STAIRS), AlwaysTrueTest.INSTANCE, PALM_STAIRS),
-						new BlockStateRespectingProcessorRule(new BlockMatchTest(JUNGLE_SAPLING), AlwaysTrueTest.INSTANCE, WWBlocks.COCONUT),
-						new BlockStateRespectingProcessorRule(new BlockMatchTest(JUNGLE_LEAVES), AlwaysTrueTest.INSTANCE, PALM_FRONDS)
+						new BlockStateRespectingProcessorRule(new BlockMatchTest(JUNGLE_STAIRS), AlwaysTrueTest.INSTANCE, PALM_STAIRS)
 
 					)
 				)
@@ -437,41 +413,7 @@ public class FrozenLibIntegration extends ModIntegration {
 			Advancement advancement = holder.value();
 			if (WWAmbienceAndMiscConfig.get().modifyAdvancements) {
 				switch (holder.id().toString()) {
-					case "minecraft:adventure/adventuring_time" -> {
-						addBiomeRequirement(advancement, WWBiomes.CYPRESS_WETLANDS, registries);
-						addBiomeRequirement(advancement, WWBiomes.MIXED_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.OASIS, registries);
-						addBiomeRequirement(advancement, WWBiomes.WARM_RIVER, registries);
-						addBiomeRequirement(advancement, WWBiomes.WARM_BEACH, registries);
-						addBiomeRequirement(advancement, WWBiomes.FROZEN_CAVES, registries);
-						addBiomeRequirement(advancement, WWBiomes.MESOGLEA_CAVES, registries);
-						addBiomeRequirement(advancement, WWBiomes.MAGMATIC_CAVES, registries);
-						addBiomeRequirement(advancement, WWBiomes.ARID_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.ARID_SAVANNA, registries);
-						addBiomeRequirement(advancement, WWBiomes.PARCHED_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.BIRCH_JUNGLE, registries);
-						addBiomeRequirement(advancement, WWBiomes.SPARSE_BIRCH_JUNGLE, registries);
-						addBiomeRequirement(advancement, WWBiomes.BIRCH_TAIGA, registries);
-						addBiomeRequirement(advancement, WWBiomes.SEMI_BIRCH_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.DARK_BIRCH_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.FLOWER_FIELD, registries);
-						addBiomeRequirement(advancement, WWBiomes.TEMPERATE_RAINFOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.RAINFOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.DARK_TAIGA, registries);
-						addBiomeRequirement(advancement, WWBiomes.OLD_GROWTH_BIRCH_TAIGA, registries);
-						addBiomeRequirement(advancement, WWBiomes.OLD_GROWTH_DARK_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.SNOWY_OLD_GROWTH_PINE_TAIGA, registries);
-						addBiomeRequirement(advancement, WWBiomes.DYING_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.SNOWY_DYING_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.DYING_MIXED_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.SNOWY_DYING_MIXED_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.MAPLE_FOREST, registries);
-						addBiomeRequirement(advancement, WWBiomes.SPARSE_FOREST, registries);
-					}
 					case "minecraft:husbandry/balanced_diet" -> {
-						AdvancementAPI.addCriteria(advancement, "wilderwild:baobab_nut", CriteriaTriggers.CONSUME_ITEM.createCriterion(
-							ConsumeItemTrigger.TriggerInstance.usedItem(ItemPredicate.Builder.item().of(items, WWItems.BAOBAB_NUT)).triggerInstance())
-						);
 						AdvancementAPI.addCriteria(advancement, "wilderwild:split_coconut", CriteriaTriggers.CONSUME_ITEM.createCriterion(
 							ConsumeItemTrigger.TriggerInstance.usedItem(ItemPredicate.Builder.item().of(items, WWItems.SPLIT_COCONUT)).triggerInstance())
 						);
@@ -541,9 +483,6 @@ public class FrozenLibIntegration extends ModIntegration {
 						);
 					}
 					case "minecraft:husbandry/bred_all_animals" -> {
-						AdvancementAPI.addCriteria(advancement, "wilderwild:crab", CriteriaTriggers.BRED_ANIMALS.createCriterion(
-							BredAnimalsTrigger.TriggerInstance.bredAnimals(EntityPredicate.Builder.entity().of(entities, WWEntityTypes.CRAB)).triggerInstance())
-						);
 						AdvancementAPI.addRequirementsAsNewList(advancement, new
 								AdvancementRequirements(List.of(
 								List.of(
@@ -553,49 +492,11 @@ public class FrozenLibIntegration extends ModIntegration {
 						);
 					}
 					case "minecraft:husbandry/tactical_fishing" -> {
-						AdvancementAPI.addCriteria(advancement, "wilderwild:crab_bucket", CriteriaTriggers.FILLED_BUCKET.createCriterion(
-							FilledBucketTrigger.TriggerInstance.filledBucket(ItemPredicate.Builder.item().of(items, WWItems.CRAB_BUCKET)).triggerInstance())
-						);
-						AdvancementAPI.addCriteria(advancement, "wilderwild:jellyfish_bucket", CriteriaTriggers.FILLED_BUCKET.createCriterion(
-							FilledBucketTrigger.TriggerInstance.filledBucket(ItemPredicate.Builder.item().of(items, WWItems.JELLYFISH_BUCKET)).triggerInstance())
-						);
 						AdvancementAPI.addRequirementsToList(advancement,
 							List.of(
 								"wilderwild:crab_bucket",
 								"wilderwild:jellyfish_bucket"
 							)
-						);
-					}
-					case "minecraft:nether/all_potions", "minecraft:nether/all_effects" -> {
-						if (advancement.criteria().get("all_effects") != null && advancement.criteria().get("all_effects").triggerInstance() instanceof EffectsChangedTrigger.TriggerInstance) {
-							Criterion<EffectsChangedTrigger.TriggerInstance> criterion = (Criterion<EffectsChangedTrigger.TriggerInstance>) advancement.criteria().get("all_effects");
-							MobEffectsPredicate predicate = criterion.triggerInstance().effects.orElseThrow();
-							Map<Holder<MobEffect>, MobEffectsPredicate.MobEffectInstancePredicate> map = new HashMap<>(predicate.effectMap);
-							map.put(WWMobEffects.REACH_BOOST, new MobEffectsPredicate.MobEffectInstancePredicate());
-							map.put(WWMobEffects.SCORCHING, new MobEffectsPredicate.MobEffectInstancePredicate());
-							predicate.effectMap = map;
-						}
-					}
-					case "minecraft:adventure/kill_a_mob" -> {
-						AdvancementAPI.addCriteria(advancement, "wilderwild:scorched", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(
-							KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(entities, WWEntityTypes.SCORCHED)).triggerInstance())
-						);
-						AdvancementAPI.addRequirementsToList(advancement,
-							List.of(
-								"wilderwild:scorched"
-							)
-						);
-					}
-					case "minecraft:adventure/kill_all_mobs" -> {
-						AdvancementAPI.addCriteria(advancement, "wilderwild:scorched", CriteriaTriggers.PLAYER_KILLED_ENTITY.createCriterion(
-							KilledTrigger.TriggerInstance.playerKilledEntity(EntityPredicate.Builder.entity().of(entities, WWEntityTypes.SCORCHED)).triggerInstance())
-						);
-						AdvancementAPI.addRequirementsAsNewList(advancement,
-							new AdvancementRequirements(List.of(
-								List.of(
-									"wilderwild:scorched"
-								)
-							))
 						);
 					}
 					default -> {

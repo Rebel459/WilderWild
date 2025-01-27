@@ -64,20 +64,6 @@ public final class WWRecipeProvider extends FabricRecipeProvider {
 				WWNaturalRecipeProvider.buildRecipes(this, exporter);
 				WWCookRecipeProvider.buildRecipes(this, exporter);
 
-				ShapedRecipeUtil.withResultPatch(
-					this.shaped(RecipeCategory.DECORATIONS, WWBlocks.DISPLAY_LANTERN)
-						.define('X', Ingredient.of(Items.IRON_NUGGET))
-						.define('#', Ingredient.of(Items.GLASS_PANE))
-						.pattern("XXX")
-						.pattern("X#X")
-						.pattern("XXX")
-						.unlockedBy(RecipeProvider.getHasName(Items.IRON_INGOT), this.has(Items.IRON_INGOT))
-						.unlockedBy(RecipeProvider.getHasName(Items.IRON_NUGGET), this.has(Items.IRON_NUGGET)),
-					DataComponentPatch.builder()
-						.set(WWDataComponents.FIREFLIES, ImmutableList.of())
-						.build()
-				).save(exporter);
-
 				this.shaped(RecipeCategory.MISC, WWBlocks.STONE_CHEST)
 					.group("stone_chest")
 					.define('_', Ingredient.of(Items.COBBLED_DEEPSLATE_SLAB))

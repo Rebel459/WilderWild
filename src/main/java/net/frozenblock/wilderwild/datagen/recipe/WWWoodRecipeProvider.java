@@ -31,8 +31,6 @@ public final class WWWoodRecipeProvider {
 		provider.planksFromLogs(WWBlocks.BAOBAB_PLANKS, WWItemTags.BAOBAB_LOGS, 4);
 		provider.woodFromLogs(WWBlocks.BAOBAB_WOOD, WWBlocks.BAOBAB_LOG);
 		provider.woodFromLogs(WWBlocks.STRIPPED_BAOBAB_WOOD, WWBlocks.STRIPPED_BAOBAB_LOG);
-		provider.woodenBoat(WWItems.BAOBAB_BOAT, WWBlocks.BAOBAB_PLANKS);
-		provider.chestBoat(WWItems.BAOBAB_CHEST_BOAT, WWItems.BAOBAB_BOAT);
 		FrozenRecipeProvider.woodenButton(provider, exporter, WWBlocks.BAOBAB_BUTTON, WWBlocks.BAOBAB_PLANKS);
 		FrozenRecipeProvider.woodenDoor(provider, exporter, WWBlocks.BAOBAB_DOOR, WWBlocks.BAOBAB_PLANKS);
 		FrozenRecipeProvider.woodenFence(provider, exporter, WWBlocks.BAOBAB_FENCE, WWBlocks.BAOBAB_PLANKS);
@@ -47,8 +45,6 @@ public final class WWWoodRecipeProvider {
 		provider.planksFromLogs(WWBlocks.CYPRESS_PLANKS, WWItemTags.CYPRESS_LOGS, 4);
 		provider.woodFromLogs(WWBlocks.CYPRESS_WOOD, WWBlocks.CYPRESS_LOG);
 		provider.woodFromLogs(WWBlocks.STRIPPED_CYPRESS_WOOD, WWBlocks.STRIPPED_CYPRESS_LOG);
-		provider.woodenBoat(WWItems.CYPRESS_BOAT, WWBlocks.CYPRESS_PLANKS);
-		provider.chestBoat(WWItems.CYPRESS_CHEST_BOAT, WWItems.CYPRESS_BOAT);
 		FrozenRecipeProvider.woodenButton(provider, exporter, WWBlocks.CYPRESS_BUTTON, WWBlocks.CYPRESS_PLANKS);
 		FrozenRecipeProvider.woodenDoor(provider, exporter, WWBlocks.CYPRESS_DOOR, WWBlocks.CYPRESS_PLANKS);
 		FrozenRecipeProvider.woodenFence(provider, exporter, WWBlocks.CYPRESS_FENCE, WWBlocks.CYPRESS_PLANKS);
@@ -63,8 +59,6 @@ public final class WWWoodRecipeProvider {
 		provider.planksFromLogs(WWBlocks.PALM_PLANKS, WWItemTags.PALM_LOGS, 4);
 		provider.woodFromLogs(WWBlocks.PALM_WOOD, WWBlocks.PALM_LOG);
 		provider.woodFromLogs(WWBlocks.STRIPPED_PALM_WOOD, WWBlocks.STRIPPED_PALM_LOG);
-		provider.woodenBoat(WWItems.PALM_BOAT, WWBlocks.PALM_PLANKS);
-		provider.chestBoat(WWItems.PALM_CHEST_BOAT, WWItems.PALM_BOAT);
 		FrozenRecipeProvider.woodenButton(provider, exporter, WWBlocks.PALM_BUTTON, WWBlocks.PALM_PLANKS);
 		FrozenRecipeProvider.woodenDoor(provider, exporter, WWBlocks.PALM_DOOR, WWBlocks.PALM_PLANKS);
 		FrozenRecipeProvider.woodenFence(provider, exporter, WWBlocks.PALM_FENCE, WWBlocks.PALM_PLANKS);
@@ -79,8 +73,6 @@ public final class WWWoodRecipeProvider {
 		provider.planksFromLogs(WWBlocks.MAPLE_PLANKS, WWItemTags.MAPLE_LOGS, 4);
 		provider.woodFromLogs(WWBlocks.MAPLE_WOOD, WWBlocks.MAPLE_LOG);
 		provider.woodFromLogs(WWBlocks.STRIPPED_MAPLE_WOOD, WWBlocks.STRIPPED_MAPLE_LOG);
-		provider.woodenBoat(WWItems.MAPLE_BOAT, WWBlocks.MAPLE_PLANKS);
-		provider.chestBoat(WWItems.MAPLE_CHEST_BOAT, WWItems.MAPLE_BOAT);
 		FrozenRecipeProvider.woodenButton(provider, exporter, WWBlocks.MAPLE_BUTTON, WWBlocks.MAPLE_PLANKS);
 		FrozenRecipeProvider.woodenDoor(provider, exporter, WWBlocks.MAPLE_DOOR, WWBlocks.MAPLE_PLANKS);
 		FrozenRecipeProvider.woodenFence(provider, exporter, WWBlocks.MAPLE_FENCE, WWBlocks.MAPLE_PLANKS);

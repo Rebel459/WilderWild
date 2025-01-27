@@ -54,16 +54,10 @@ public class WWCreativeInventorySorting {
 		addAfterInBuildingBlocks(WWBlocks.BAOBAB_PRESSURE_PLATE, WWBlocks.BAOBAB_BUTTON);
 		// BAOBAB (NATURAL BLOCKS)
 		addAfterInNaturalBlocks(Items.MANGROVE_LOG, WWBlocks.BAOBAB_LOG);
-		addAfterInNaturalBlocks(Items.MANGROVE_LEAVES, WWBlocks.BAOBAB_LEAVES);
 		// BAOBAB (FUNCTIONAL BLOCKS)
 		addAfterInFunctionalBlocks(Items.MANGROVE_HANGING_SIGN, WWItems.BAOBAB_SIGN);
 		addAfterInFunctionalBlocks(WWItems.BAOBAB_SIGN, WWItems.BAOBAB_HANGING_SIGN);
 		// BAOBAB (TOOLS AND UTILITIES)
-		addAfterInToolsAndUtilities(Items.MANGROVE_CHEST_BOAT, WWItems.BAOBAB_BOAT);
-		addAfterInToolsAndUtilities(WWItems.BAOBAB_BOAT, WWItems.BAOBAB_CHEST_BOAT);
-		// BAOBAB NUT
-		addAfterInFoodAndDrinks(Items.GLOW_BERRIES, WWItems.BAOBAB_NUT);
-		addAfterInNaturalBlocks(Items.MANGROVE_PROPAGULE, WWItems.BAOBAB_NUT);
 
 		// CYPRESS (BUILDING BLOCKS)
 		addAfterInBuildingBlocks(WWBlocks.BAOBAB_BUTTON, WWBlocks.CYPRESS_LOG);
@@ -81,14 +75,10 @@ public class WWCreativeInventorySorting {
 		addAfterInBuildingBlocks(WWBlocks.CYPRESS_PRESSURE_PLATE, WWBlocks.CYPRESS_BUTTON);
 		// CYPRESS (NATURAL_BLOCKS)
 		addAfterInNaturalBlocks(WWBlocks.BAOBAB_LOG, WWBlocks.CYPRESS_LOG);
-		addAfterInNaturalBlocks(WWBlocks.BAOBAB_LEAVES, WWBlocks.CYPRESS_LEAVES);
-		addAfterInNaturalBlocks(Items.MANGROVE_PROPAGULE, WWBlocks.CYPRESS_SAPLING);
 		// CYPRESS (FUNCTIONAL BLOCKS)
 		addAfterInFunctionalBlocks(WWItems.BAOBAB_HANGING_SIGN, WWItems.CYPRESS_SIGN);
 		addAfterInFunctionalBlocks(WWItems.CYPRESS_SIGN, WWItems.CYPRESS_HANGING_SIGN);
 		// CYPRESS (TOOLS AND UTILITIES)
-		addAfterInToolsAndUtilities(WWItems.BAOBAB_CHEST_BOAT, WWItems.CYPRESS_BOAT);
-		addAfterInToolsAndUtilities(WWItems.CYPRESS_BOAT, WWItems.CYPRESS_CHEST_BOAT);
 
 		// PALM (BUILDING BLOCKS)
 		addAfterInBuildingBlocks(WWBlocks.CYPRESS_BUTTON, WWBlocks.PALM_LOG);
@@ -106,17 +96,10 @@ public class WWCreativeInventorySorting {
 		addAfterInBuildingBlocks(WWBlocks.PALM_PRESSURE_PLATE, WWBlocks.PALM_BUTTON);
 		// PALM (NATURAL BLOCKS)
 		addAfterInNaturalBlocks(WWBlocks.CYPRESS_LOG, WWBlocks.PALM_LOG);
-		addAfterInNaturalBlocks(WWBlocks.CYPRESS_LEAVES, WWBlocks.PALM_FRONDS);
 		// PALM (FUNCTIONAL BLOCKS)
 		addAfterInFunctionalBlocks(WWItems.CYPRESS_HANGING_SIGN, WWItems.PALM_SIGN);
 		addAfterInFunctionalBlocks(WWItems.PALM_SIGN, WWItems.PALM_HANGING_SIGN);
 		// PALM (TOOLS AND UTILITIES)
-		addAfterInToolsAndUtilities(WWItems.CYPRESS_CHEST_BOAT, WWItems.PALM_BOAT);
-		addAfterInToolsAndUtilities(WWItems.PALM_BOAT, WWItems.PALM_CHEST_BOAT);
-		// COCONUT
-		addAfterInCombat(Items.EGG, WWItems.COCONUT);
-		addAfterInNaturalBlocks(WWBlocks.CYPRESS_SAPLING, WWItems.COCONUT);
-		addAfterInFoodAndDrinks(WWItems.BAOBAB_NUT, WWItems.SPLIT_COCONUT);
 
 		// MAPLE (BUILDING BLOCKS)
 		addAfterInBuildingBlocks(Items.CHERRY_BUTTON, WWBlocks.MAPLE_LOG);
@@ -134,7 +117,6 @@ public class WWCreativeInventorySorting {
 		addAfterInBuildingBlocks(WWBlocks.MAPLE_PRESSURE_PLATE, WWBlocks.MAPLE_BUTTON);
 		// MAPLE (NATURAL BLOCKS)
 		addAfterInNaturalBlocks(Items.CHERRY_LOG, WWBlocks.MAPLE_LOG);
-		addAfterInNaturalBlocks(Items.CHERRY_SAPLING, WWBlocks.MAPLE_SAPLING);
 		addAfterInNaturalBlocks(Blocks.CHERRY_LEAVES, WWBlocks.YELLOW_MAPLE_LEAVES);
 		addAfterInNaturalBlocks(WWBlocks.YELLOW_MAPLE_LEAVES, WWBlocks.YELLOW_MAPLE_LEAF_LITTER);
 		addAfterInNaturalBlocks(WWBlocks.YELLOW_MAPLE_LEAF_LITTER, WWBlocks.ORANGE_MAPLE_LEAVES);
@@ -145,8 +127,6 @@ public class WWCreativeInventorySorting {
 		addAfterInFunctionalBlocks(Blocks.CHERRY_HANGING_SIGN, WWItems.MAPLE_SIGN);
 		addAfterInFunctionalBlocks(WWItems.MAPLE_SIGN, WWItems.MAPLE_HANGING_SIGN);
 		// MAPLE (TOOLS AND UTILITIES)
-		addAfterInToolsAndUtilities(Items.CHERRY_CHEST_BOAT, WWItems.MAPLE_BOAT);
-		addAfterInToolsAndUtilities(WWItems.MAPLE_BOAT, WWItems.MAPLE_CHEST_BOAT);
 
 		// HOLLOWED LOGS
 		addAfterInBuildingAndNaturalBlocks(Items.OAK_LOG, WWBlocks.HOLLOWED_OAK_LOG);
@@ -237,7 +217,6 @@ public class WWCreativeInventorySorting {
 
 		// PALE MUSHROOMS
 		addAfterInNaturalBlocks(Items.RED_MUSHROOM_BLOCK, WWBlocks.PALE_MUSHROOM_BLOCK);
-		addAfterInNaturalBlocks(Items.RED_MUSHROOM, WWBlocks.PALE_MUSHROOM);
 		addAfterInNaturalBlocks(WWBlocks.RED_SHELF_FUNGI, WWBlocks.PALE_SHELF_FUNGI);
 
 		// SPONGE
@@ -296,7 +275,6 @@ public class WWCreativeInventorySorting {
 
 		// STORAGE
 		addAfterInFunctionalBlocks(Items.CHEST, WWBlocks.STONE_CHEST);
-		addAfterInFunctionalBlocks(Items.SOUL_LANTERN, WWItems.DISPLAY_LANTERN);
 
 		// FUNCTIONAL BLOCK ENTITIES
 		addBeforeInNaturalBlocks(Items.BEE_NEST, WWBlocks.TERMITE_MOUND);
@@ -307,34 +285,18 @@ public class WWCreativeInventorySorting {
 		addAfterInFunctionalBlocks(Items.TINTED_GLASS, WWItems.ECHO_GLASS);
 		addBeforeInBuildingBlocks(Items.GLASS, WWBlocks.NULL_BLOCK);
 
-		// FIREFLY
-		addAfterInSpawnEggs(Items.EVOKER_SPAWN_EGG, WWItems.FIREFLY_SPAWN_EGG);
-		addInToolsAndUtilities(WWItems.FIREFLY_BOTTLE);
 
-		// BUTTERFLY
-		addAfterInSpawnEggs(Items.BREEZE_SPAWN_EGG, WWItems.BUTTERFLY_SPAWN_EGG);
-		addInToolsAndUtilities(WWItems.BUTTERFLY_BOTTLE);
 
-		// JELLYFISH
-		addAfterInSpawnEggs(Items.HUSK_SPAWN_EGG, WWItems.JELLYFISH_SPAWN_EGG);
-		addAfterInToolsAndUtilities(Items.AXOLOTL_BUCKET, WWItems.JELLYFISH_BUCKET);
-
-		// CRAB
-		addBeforeInSpawnEggs(Items.CREEPER_SPAWN_EGG, WWItems.CRAB_SPAWN_EGG);
-		addAfterInToolsAndUtilities(WWItems.JELLYFISH_BUCKET, WWItems.CRAB_BUCKET);
 		addAfterInFoodAndDrinks(Items.COOKED_COD, WWItems.CRAB_CLAW);
 		addAfterInFoodAndDrinks(WWItems.CRAB_CLAW, WWItems.COOKED_CRAB_CLAW);
 
 		// OSTRICH
-		addAfterInSpawnEggs(Items.OCELOT_SPAWN_EGG, WWItems.OSTRICH_SPAWN_EGG);
 
 		// SCORCHED
-		addAfterInSpawnEggs(Items.SALMON_SPAWN_EGG, WWItems.SCORCHED_SPAWN_EGG);
 		addAfterInIngredients(Items.SPIDER_EYE, WWItems.SCORCHED_EYE);
 		addAfterInIngredients(Items.FERMENTED_SPIDER_EYE, WWItems.FERMENTED_SCORCHED_EYE);
 
 		// MOOBLOOM
-		addBeforeInSpawnEggs(Items.MOOSHROOM_SPAWN_EGG, WWItems.MOOBLOOM_SPAWN_EGG);
 
 		// HORNS
 		addInstrumentBefore(Items.MUSIC_DISC_13, WWItems.COPPER_HORN, WWInstrumentTags.COPPER_HORNS, CreativeModeTabs.TOOLS_AND_UTILITIES);

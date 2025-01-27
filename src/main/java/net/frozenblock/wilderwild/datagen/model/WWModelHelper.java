@@ -28,7 +28,6 @@ import net.frozenblock.wilderwild.WWConstants;
 import net.frozenblock.wilderwild.block.ShelfFungiBlock;
 import net.frozenblock.wilderwild.client.renderer.item.properties.FireflyBottleColorProperty;
 import net.frozenblock.wilderwild.client.renderer.special.StoneChestSpecialRenderer;
-import net.frozenblock.wilderwild.entity.variant.firefly.FireflyColors;
 import net.frozenblock.wilderwild.registry.WWBlockStateProperties;
 import net.frozenblock.wilderwild.registry.WWBlocks;
 import net.frozenblock.wilderwild.registry.WWItems;
@@ -365,31 +364,4 @@ public final class WWModelHelper {
 		generator.registerSimpleItemModel(block, TexturedModel.CUBE.createWithSuffix(block, "_inventory", generator.modelOutput));
 	}
 
-	public static void generateFireflyBottles(@NotNull ItemModelGenerators generator) {
-		List<SelectItemModel.SwitchCase<ResourceLocation>> switchCases = new ArrayList<>();
-
-		FireflyColors.getVanillaColors().forEach(fireflyColor -> {
-			if (fireflyColor.equals(WWConstants.string("on"))) return;
-			ResourceLocation colorKey = ResourceLocation.parse(fireflyColor);
-			ResourceLocation location = ResourceLocation.fromNamespaceAndPath(colorKey.getNamespace(), "item/" + colorKey.getPath() + "_firefly_bottle");
-
-			switchCases.add(
-				ItemModelUtils.when(
-					colorKey,
-					ItemModelUtils.plainModel(
-						ModelTemplates.FLAT_ITEM.create(location, TextureMapping.layer0(location), generator.modelOutput)
-					)
-				)
-			);
-		});
-
-		generator.itemModelOutput.accept(
-			WWItems.FIREFLY_BOTTLE,
-			ItemModelUtils.select(
-				new FireflyBottleColorProperty(),
-				ItemModelUtils.plainModel(generator.createFlatItemModel(WWItems.FIREFLY_BOTTLE, ModelTemplates.FLAT_ITEM)),
-				switchCases
-			)
-		);
-	}
 }

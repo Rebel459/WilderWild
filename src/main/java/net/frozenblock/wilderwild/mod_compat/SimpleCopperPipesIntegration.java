@@ -20,14 +20,10 @@ package net.frozenblock.wilderwild.mod_compat;
 
 import net.frozenblock.lib.integration.api.ModIntegration;
 import net.frozenblock.wilderwild.WWConstants;
-import net.frozenblock.wilderwild.entity.Tumbleweed;
-import net.frozenblock.wilderwild.registry.WWEntityTypes;
 import net.lunade.copper.SimpleCopperPipes;
-import net.lunade.copper.registry.CopperPipeDispenseBehaviors;
 import net.lunade.copper.registry.PipeMovementRestrictions;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.Contract;
@@ -43,14 +39,6 @@ public class SimpleCopperPipesIntegration extends ModIntegration {
 	public void init() {
 		if (SimpleCopperPipes.getCompatID() == 4) {
 			WWConstants.log("Initiated Wilder Wild & Simple Copper Pipes compat!", true);
-
-			CopperPipeDispenseBehaviors.register(BuiltInRegistries.ITEM.getValue(WWConstants.id("tumbleweed")), (level, stack, i, direction, position, state, pos, pipe) -> {
-				Vec3 velocity = getVelocity(level.getRandom(), direction, 5D, i);
-				Tumbleweed tumbleweed = new Tumbleweed(WWEntityTypes.TUMBLEWEED, level);
-				tumbleweed.setDeltaMovement(velocity.x() * 0.2, velocity.y() * 0.2, velocity.z() * 0.2);
-				tumbleweed.setPos(getOutputPosition(position, direction));
-				level.addFreshEntity(tumbleweed);
-			});
 
 			PipeMovementRestrictions.register(
 				WWConstants.id("stone_chest"),

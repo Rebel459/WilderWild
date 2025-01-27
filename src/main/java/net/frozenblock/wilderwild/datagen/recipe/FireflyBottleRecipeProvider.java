@@ -82,22 +82,6 @@ public final class FireflyBottleRecipeProvider {
 			)
 		);
 
-		fireflyBottle(provider, WWConstants.string("black"), Items.BLACK_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("blue"), Items.BLUE_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("brown"), Items.BROWN_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("cyan"), Items.CYAN_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("gray"), Items.GRAY_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("green"), Items.GREEN_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("light_blue"), Items.LIGHT_BLUE_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("light_gray"), Items.LIGHT_GRAY_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("lime"), Items.LIME_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("magenta"), Items.MAGENTA_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("orange"), Items.ORANGE_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("pink"), Items.PINK_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("purple"), Items.PURPLE_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("red"), Items.RED_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("white"), Items.WHITE_DYE, exporter);
-		fireflyBottle(provider, WWConstants.string("yellow"), Items.YELLOW_DYE, exporter);
 	}
 
 	private static void colorFireflyBottlesWithDyes(
@@ -117,56 +101,13 @@ public final class FireflyBottleRecipeProvider {
 				CompoundTag ingredientColorTag = new CompoundTag();
 				ingredientColorTag.putString("FireflyBottleVariantTag", fireflyColor);
 
-				possibleIngredients.add(DefaultCustomIngredients.components(
-					Ingredient.of(WWItems.FIREFLY_BOTTLE),
-					DataComponentPatch.builder()
-						.set(WWDataComponents.BOTTLE_ENTITY_DATA, CustomData.of(ingredientColorTag))
-						.build()
-				));
 			}
 
 			Ingredient input = DefaultCustomIngredients.any(possibleIngredients.toArray(new Ingredient[0]));
 			ResourceLocation colorLocation = ResourceLocation.parse(outputColor);
 
-			((ShapelessRecipeBuilderExtension) provider.shapeless(RecipeCategory.MISC, WWItems.FIREFLY_BOTTLE)
-				.requires(dye)
-				.requires(input)
-				.group("firefly_bottle")
-				.unlockedBy("has_needed_dye", provider.has(dye))
-			).frozenLib$patch(
-				DataComponentPatch.builder()
-					.set(WWDataComponents.BOTTLE_ENTITY_DATA, CustomData.of(variantTag))
-					.build()
-			).save(
-				recipeOutput,
-				WWConstants.string("dye_" + colorLocation.getPath() + "_firefly_bottle")
-			);
 		}
 	}
 
-	private static void fireflyBottle(RecipeProvider provider, @NotNull String fireflyColor, Item dye, RecipeOutput exporter) {
-		CompoundTag defaultColorTag = new CompoundTag();
-		defaultColorTag.putString("FireflyBottleVariantTag", WWConstants.string("on"));
-
-		CompoundTag variantTag = new CompoundTag();
-		variantTag.putString("FireflyBottleVariantTag", fireflyColor);
-		ResourceLocation colorLocation = ResourceLocation.parse(fireflyColor);
-
-		((ShapelessRecipeBuilderExtension) provider.shapeless(RecipeCategory.MISC, WWItems.FIREFLY_BOTTLE)
-			.group("firefly_bottle")
-			.requires(dye)
-			.requires(DefaultCustomIngredients.components(
-				Ingredient.of(WWItems.FIREFLY_BOTTLE),
-				DataComponentPatch.builder()
-					.set(WWDataComponents.BOTTLE_ENTITY_DATA, CustomData.of(defaultColorTag))
-					.build()
-			))
-			.unlockedBy("has_firefly_bottle", provider.has(WWItems.FIREFLY_BOTTLE))
-		).frozenLib$patch(
-			DataComponentPatch.builder()
-				.set(WWDataComponents.BOTTLE_ENTITY_DATA, CustomData.of(variantTag))
-				.build()
-			).save(exporter, WWConstants.string(colorLocation.getPath() + "_firefly_bottle"));
-	}
 
 }

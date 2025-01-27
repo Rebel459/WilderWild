@@ -26,7 +26,6 @@ import java.util.List;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.frozenblock.lib.debug.client.impl.DebugRenderManager;
-import net.frozenblock.wilderwild.entity.Ostrich;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
@@ -62,38 +61,6 @@ public final class OstrichDebugRenderer implements DebugRenderer.SimpleDebugRend
 	@Override
 	public void render(PoseStack matrices, @NotNull MultiBufferSource vertexConsumers, double cameraX, double cameraY, double cameraZ) {
 		for (Entity entity2 : this.surroundEntities) {
-			if (entity2 instanceof Ostrich ostrich) {
-				try {
-					AABB attackBox = ostrich.createAttackBox(DebugRenderManager.PARTIAL_TICK).move(-cameraX, -cameraY, -cameraZ);
-					ShapeRenderer.renderLineBox(
-						matrices,
-						vertexConsumers.getBuffer(RenderType.lines()),
-						attackBox,
-						1F, 0F, 0F, 1F
-					);
-
-					List<Vec3> debugPoses = ostrich.getDebugRenderingPoses(DebugRenderManager.PARTIAL_TICK);
-					for (int i = 1; i < debugPoses.size(); i++) {
-						Vec3 previous = debugPoses.get(i - 1);
-						Vec3 target = debugPoses.get(i);
-						drawLine(
-							matrices,
-							vertexConsumers,
-							cameraX, cameraY, cameraZ,
-							previous, target,
-							NECK_LINE_COLOR
-						);
-					}
-					debugPoses.forEach(
-						vec3 -> renderFilledBox(
-							matrices,
-							vertexConsumers,
-							AABB.ofSize(vec3, 0.1D, 0.1D, 0.1D),
-							cameraX, cameraY, cameraZ
-						)
-					);
-				} catch (Exception ignored) {}
-			}
 		}
 	}
 

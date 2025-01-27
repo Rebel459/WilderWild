@@ -32,21 +32,14 @@ import net.frozenblock.lib.mobcategory.impl.FrozenMobCategory;
 import net.frozenblock.wilderwild.command.SpreadSculkCommand;
 import net.frozenblock.wilderwild.config.WWBlockConfig;
 import net.frozenblock.wilderwild.config.WWEntityConfig;
-import net.frozenblock.wilderwild.datafix.minecraft.WWMinecraftDataFixer;
-import net.frozenblock.wilderwild.datafix.wilderwild.WWDataFixer;
-import net.frozenblock.wilderwild.entity.Crab;
-import net.frozenblock.wilderwild.entity.Jellyfish;
 import net.frozenblock.wilderwild.mod_compat.WWModIntegrations;
 import net.frozenblock.wilderwild.networking.WWNetworking;
-import net.frozenblock.wilderwild.registry.WWBiomes;
 import net.frozenblock.wilderwild.registry.WWBlockEntityTypes;
 import net.frozenblock.wilderwild.registry.WWBlocks;
 import net.frozenblock.wilderwild.registry.WWCreativeInventorySorting;
 import net.frozenblock.wilderwild.registry.WWCriteria;
 import net.frozenblock.wilderwild.registry.WWDamageTypes;
 import net.frozenblock.wilderwild.registry.WWDataComponents;
-import net.frozenblock.wilderwild.registry.WWEntityTypes;
-import net.frozenblock.wilderwild.registry.WWFeatures;
 import net.frozenblock.wilderwild.registry.WWGameEvents;
 import net.frozenblock.wilderwild.registry.WWItems;
 import net.frozenblock.wilderwild.registry.WWLootTables;
@@ -55,12 +48,9 @@ import net.frozenblock.wilderwild.registry.WWMobEffects;
 import net.frozenblock.wilderwild.registry.WWParticleTypes;
 import net.frozenblock.wilderwild.registry.WWPotions;
 import net.frozenblock.wilderwild.registry.WWResources;
-import net.frozenblock.wilderwild.registry.WWSensorTypes;
 import net.frozenblock.wilderwild.registry.WWSoundTypes;
 import net.frozenblock.wilderwild.registry.WWSounds;
-import net.frozenblock.wilderwild.registry.WWVillagers;
 import net.frozenblock.wilderwild.registry.WilderWildRegistries;
-import net.frozenblock.wilderwild.worldgen.modification.WWWorldgen;
 import org.jetbrains.annotations.NotNull;
 
 public final class WilderWild extends FrozenModInitializer implements FrozenMobCategoryEntrypoint {
@@ -71,8 +61,6 @@ public final class WilderWild extends FrozenModInitializer implements FrozenMobC
 
 	@Override //Alan Wilder Wild
 	public void onInitialize(String modId, ModContainer container) {
-		WWMinecraftDataFixer.applyDataFixes(container);
-		WWDataFixer.applyDataFixes(container);
 		WWResources.register(container);
 
 		if (FrozenBools.IS_DATAGEN) {
@@ -89,35 +77,21 @@ public final class WilderWild extends FrozenModInitializer implements FrozenMobC
 		WWSounds.init();
 		WWSoundTypes.init();
 		WWBlockEntityTypes.register();
-		WWEntityTypes.init();
 		WWDamageTypes.init();
 		WWMemoryModuleTypes.register();
-		WWSensorTypes.register();
 		WWLootTables.init();
 		WWParticleTypes.registerParticles();
 		WWMobEffects.init();
 		WWPotions.init();
 		WWCriteria.init();
 
-		WWFeatures.init();
-		WWBiomes.init();
-		WWWorldgen.generateWildWorldGen();
 		WWBlocks.registerBlockProperties();
-		WWVillagers.register();
 
 		WWModIntegrations.init();
 		WWBlocks.registerBlockProperties();
 		WWNetworking.init();
 
-		CommandRegistrationCallback.EVENT.register((dispatcher, registryAccess, environment) -> SpreadSculkCommand.register(dispatcher));
-
 		ServerLifecycleEvents.SERVER_STOPPED.register(listener -> {
-			Jellyfish.clearLevelToNonPearlescentCount();
-			Crab.clearLevelToCrabCount();
-		});
-		ServerTickEvents.START_SERVER_TICK.register(listener -> {
-			Jellyfish.clearLevelToNonPearlescentCount();
-			Crab.clearLevelToCrabCount();
 		});
 	}
 

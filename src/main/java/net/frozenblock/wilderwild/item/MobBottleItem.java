@@ -22,10 +22,7 @@ import com.mojang.serialization.MapCodec;
 import java.util.List;
 import java.util.Optional;
 import net.frozenblock.wilderwild.WWConstants;
-import net.frozenblock.wilderwild.entity.impl.Bottleable;
-import net.frozenblock.wilderwild.entity.variant.firefly.FireflyColors;
 import net.frozenblock.wilderwild.registry.WWDataComponents;
-import net.frozenblock.wilderwild.registry.WWEntityTypes;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
@@ -82,12 +79,6 @@ public class MobBottleItem extends Item {
 				entity.moveTo(player.getX(), player.getEyeY(), player.getZ(), player.getXRot(), player.getYRot());
 				boolean spawned = server.addFreshEntity(entity);
 				if (spawned) {
-					if (entity instanceof Bottleable bottleable) {
-						CustomData customData = stack.getOrDefault(WWDataComponents.BOTTLE_ENTITY_DATA, CustomData.EMPTY);
-						bottleable.loadFromBottleTag(customData.copyTag());
-						bottleable.setFromBottle(true);
-						bottleable.onBottleRelease();
-					}
 
 					if (!player.getAbilities().instabuild) player.setItemInHand(interactionHand, ItemUtils.createFilledResult(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
 					player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
@@ -108,23 +99,6 @@ public class MobBottleItem extends Item {
 	public void appendHoverText(@NotNull ItemStack itemStack, Item.TooltipContext tooltipContext, List<Component> list, TooltipFlag tooltipFlag) {
 		CustomData customData = itemStack.getOrDefault(WWDataComponents.BOTTLE_ENTITY_DATA, CustomData.EMPTY);
 		if (customData.isEmpty()) return;
-		if (this.type == WWEntityTypes.BUTTERFLY) {
-			Optional<ResourceLocation> optional = customData.read(BUTTERFLY_VARIANT_FIELD_CODEC).result();
-			if (optional.isPresent()) {
-				ChatFormatting[] chatFormattings = new ChatFormatting[]{ChatFormatting.ITALIC, ChatFormatting.GRAY};
-				ResourceLocation variantKey = optional.get();
-				list.add(Component.translatable(variantKey.getNamespace() + ".butterfly.variant." + variantKey.getPath()).withStyle(chatFormattings));
-			}
-		} else if (this.type == WWEntityTypes.FIREFLY) {
-			Optional<ResourceLocation> optional = customData.read(FIREFLY_VARIANT_FIELD_CODEC).result();
-			if (optional.isPresent()) {
-				ResourceLocation colorKey = optional.get();
-				if (colorKey.equals(FireflyColors.DEFAULT.location())) return;
-
-				ChatFormatting[] chatFormattings = new ChatFormatting[]{ChatFormatting.ITALIC, ChatFormatting.GRAY};
-				list.add(Component.translatable(colorKey.getNamespace() + ".firefly.color." + colorKey.getPath()).withStyle(chatFormattings));
-			}
-		}
 	}
 
 	@NotNull

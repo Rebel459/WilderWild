@@ -26,7 +26,6 @@ import java.util.function.Supplier;
 import net.frozenblock.wilderwild.block.entity.StoneChestBlockEntity;
 import net.frozenblock.wilderwild.block.entity.impl.ChestBlockEntityInterface;
 import net.frozenblock.wilderwild.block.impl.ChestUtil;
-import net.frozenblock.wilderwild.entity.Jellyfish;
 import net.frozenblock.wilderwild.registry.WWBlockEntityTypes;
 import net.frozenblock.wilderwild.registry.WWBlockStateProperties;
 import net.frozenblock.wilderwild.registry.WWSounds;
@@ -228,13 +227,6 @@ public class StoneChestBlock extends ChestBlock {
 						}
 					} else {
 						stoneChest.liftLid(LIFT_AMOUNT, ancient);
-					}
-					if (first) {
-						((ChestBlockEntityInterface) stoneChest).wilderWild$bubble(level, pos, state);
-						ResourceKey<LootTable> lootTable = stoneChest.lootTable;
-						if (lootTable != null && state.hasProperty(BlockStateProperties.WATERLOGGED) && state.getValue(BlockStateProperties.WATERLOGGED) && lootTable.location().getPath().toLowerCase().contains("shipwreck")) {
-							Jellyfish.spawnFromChest(level, state, pos, true);
-						}
 					}
 					StoneChestBlockEntity.playSound(level, pos, state, first ? WWSounds.BLOCK_STONE_CHEST_OPEN : WWSounds.BLOCK_STONE_CHEST_LIFT, first ? WWSounds.BLOCK_STONE_CHEST_OPEN_UNDERWATER : WWSounds.BLOCK_STONE_CHEST_LIFT_UNDERWATER, 0.35F);
 					level.gameEvent(player, GameEvent.CONTAINER_OPEN, pos);

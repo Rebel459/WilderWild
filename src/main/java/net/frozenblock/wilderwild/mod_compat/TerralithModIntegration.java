@@ -23,17 +23,7 @@ import net.fabricmc.fabric.api.biome.v1.BiomeSelectors;
 import net.frozenblock.lib.integration.api.ModIntegration;
 import net.frozenblock.lib.mobcategory.api.FrozenMobCategories;
 import net.frozenblock.wilderwild.WWConstants;
-import net.frozenblock.wilderwild.registry.WWEntityTypes;
 
-public class TerralithModIntegration extends ModIntegration {
+public class TerralithModIntegration{
 
-	public TerralithModIntegration() {
-		super("terralith");
-	}
-
-	@Override
-	public void init() {
-		BiomeModifications.addSpawn(BiomeSelectors.includeByKey(getBiomeKey("cave/underground_jungle")),
-			FrozenMobCategories.getCategory(WWConstants.MOD_ID, "firefly"), WWEntityTypes.FIREFLY, 12, 2, 4);
-	}
 }

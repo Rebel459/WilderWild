@@ -52,9 +52,7 @@ public final class WWParticleEngine {
 		particleRegistry.register(WWParticleTypes.CHERRY_LEAVES, WWFallingLeavesParticle.Factory::new);
 		particleRegistry.register(WWParticleTypes.AZALEA_LEAVES, WWFallingLeavesParticle.Factory::new);
 		particleRegistry.register(WWParticleTypes.FLOWERING_AZALEA_LEAVES, WWFallingLeavesParticle.Factory::new);
-		particleRegistry.register(WWParticleTypes.BAOBAB_LEAVES, WWFallingLeavesParticle.Factory::new);
 		particleRegistry.register(WWParticleTypes.CYPRESS_LEAVES, WWFallingLeavesParticle.Factory::new);
-		particleRegistry.register(WWParticleTypes.PALM_FRONDS, WWFallingLeavesParticle.Factory::new);
 		particleRegistry.register(WWParticleTypes.YELLOW_MAPLE_LEAVES, WWFallingLeavesParticle.Factory::new);
 		particleRegistry.register(WWParticleTypes.ORANGE_MAPLE_LEAVES, WWFallingLeavesParticle.Factory::new);
 		particleRegistry.register(WWParticleTypes.RED_MAPLE_LEAVES, WWFallingLeavesParticle.Factory::new);

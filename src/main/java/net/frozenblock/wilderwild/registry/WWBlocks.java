@@ -18,7 +18,6 @@
 
 package net.frozenblock.wilderwild.registry;
 
-import java.util.Optional;
 import java.util.function.Function;
 import java.util.function.Supplier;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityType;
@@ -33,11 +32,7 @@ import net.frozenblock.lib.item.api.bonemeal.BonemealBehaviors;
 import net.frozenblock.lib.storage.api.NoInteractionStorage;
 import net.frozenblock.wilderwild.WWConstants;
 import net.frozenblock.wilderwild.block.AlgaeBlock;
-import net.frozenblock.wilderwild.block.BaobabLeavesBlock;
-import net.frozenblock.wilderwild.block.BaobabNutBlock;
 import net.frozenblock.wilderwild.block.CattailBlock;
-import net.frozenblock.wilderwild.block.CoconutBlock;
-import net.frozenblock.wilderwild.block.DisplayLanternBlock;
 import net.frozenblock.wilderwild.block.EchoGlassBlock;
 import net.frozenblock.wilderwild.block.FlowerLichenBlock;
 import net.frozenblock.wilderwild.block.FloweringWaterlilyBlock;
@@ -54,9 +49,7 @@ import net.frozenblock.wilderwild.block.MyceliumGrowthBlock;
 import net.frozenblock.wilderwild.block.NematocystBlock;
 import net.frozenblock.wilderwild.block.OsseousSculkBlock;
 import net.frozenblock.wilderwild.block.OstrichEggBlock;
-import net.frozenblock.wilderwild.block.PaleMushroomBlock;
 import net.frozenblock.wilderwild.block.PaleShelfFungiBlock;
-import net.frozenblock.wilderwild.block.PalmFrondsBlock;
 import net.frozenblock.wilderwild.block.PollenBlock;
 import net.frozenblock.wilderwild.block.PricklyPearCactusBlock;
 import net.frozenblock.wilderwild.block.ScorchedBlock;
@@ -70,21 +63,13 @@ import net.frozenblock.wilderwild.block.StoneChestBlock;
 import net.frozenblock.wilderwild.block.TermiteMoundBlock;
 import net.frozenblock.wilderwild.block.TumbleweedBlock;
 import net.frozenblock.wilderwild.block.TumbleweedPlantBlock;
-import net.frozenblock.wilderwild.block.WaterloggableSaplingBlock;
 import net.frozenblock.wilderwild.block.WilderBushBlock;
 import net.frozenblock.wilderwild.block.impl.FallingLeafUtil;
 import net.frozenblock.wilderwild.config.WWAmbienceAndMiscConfig;
-import net.frozenblock.wilderwild.entity.Tumbleweed;
 import net.frozenblock.wilderwild.particle.options.WWFallingLeavesParticleOptions;
-import net.frozenblock.wilderwild.worldgen.feature.configured.WWTreeConfigured;
-import net.frozenblock.wilderwild.worldgen.feature.placed.WWMiscPlaced;
-import net.frozenblock.wilderwild.worldgen.impl.sapling.WWTreeGrowers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.Holder;
 import net.minecraft.core.Registry;
-import net.minecraft.core.dispenser.BlockSource;
-import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -97,15 +82,12 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CeilingHangingSignBlock;
-import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
@@ -114,7 +96,6 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
-import net.minecraft.world.level.block.SaplingBlock;
 import net.minecraft.world.level.block.SignBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -132,10 +113,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraft.world.level.material.PushReaction;
-import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 
 public final class WWBlocks {
@@ -210,15 +189,6 @@ public final class WWBlocks {
 			.randomTicks()
 	);
 
-	public static final BaobabNutBlock BAOBAB_NUT = registerWithoutItem("baobab_nut",
-		properties -> new BaobabNutBlock(WWTreeGrowers.BAOBAB, properties),
-		Properties.ofFullCopy(Blocks.BAMBOO)
-			.sound(WWSoundTypes.BAOBAB_NUT)
-	);
-	public static final Block POTTED_BAOBAB_NUT = registerWithoutItem("potted_baobab_nut",
-		properties -> new FlowerPotBlock(BAOBAB_NUT, properties),
-		Blocks.flowerPotProperties()
-	);
 
 	public static final PricklyPearCactusBlock PRICKLY_PEAR_CACTUS = registerWithoutItem("prickly_pear",
 		PricklyPearCactusBlock::new,
@@ -227,47 +197,14 @@ public final class WWBlocks {
 			.offsetType(BlockBehaviour.OffsetType.XZ)
 	);
 
-	public static final WaterloggableSaplingBlock CYPRESS_SAPLING = register("cypress_sapling",
-		properties -> new WaterloggableSaplingBlock(WWTreeGrowers.CYPRESS, properties),
-		Properties.ofFullCopy(Blocks.BIRCH_SAPLING)
-	);
-	public static final Block POTTED_CYPRESS_SAPLING = registerWithoutItem("potted_cypress_sapling",
-		properties -> new FlowerPotBlock(CYPRESS_SAPLING, properties),
-		Blocks.flowerPotProperties()
-	);
 
-	public static final CoconutBlock COCONUT = registerWithoutItem("coconut",
-		properties -> new CoconutBlock(WWTreeGrowers.PALM, properties),
-		Properties.of().instabreak().randomTicks().sound(WWSoundTypes.COCONUT)
-	);
-	public static final Block POTTED_COCONUT = registerWithoutItem("potted_coconut",
-		properties -> new FlowerPotBlock(COCONUT, properties),
-		Blocks.flowerPotProperties()
-	);
 
-	public static final SaplingBlock MAPLE_SAPLING = register("maple_sapling",
-		properties -> new SaplingBlock(WWTreeGrowers.MAPLE, properties),
-		Properties.ofFullCopy(Blocks.BIRCH_SAPLING)
-	);
-	public static final Block POTTED_MAPLE_SAPLING = registerWithoutItem("potted_maple_sapling",
-		properties -> new FlowerPotBlock(MAPLE_SAPLING, properties),
-		Blocks.flowerPotProperties()
-	);
 
 	public static final Block CYPRESS_LEAVES = register("cypress_leaves",
 		LeavesBlock::new,
 		Blocks.leavesProperties(SoundType.GRASS)
 	); // in front so the other leaves can have a copy of its settings
 
-	public static final Block BAOBAB_LEAVES = register("baobab_leaves",
-		BaobabLeavesBlock::new,
-		Properties.ofFullCopy(CYPRESS_LEAVES)
-	);
-
-	public static final PalmFrondsBlock PALM_FRONDS = register("palm_fronds",
-		PalmFrondsBlock::new,
-		Properties.ofFullCopy(CYPRESS_LEAVES)
-	);
 	public static final Block YELLOW_MAPLE_LEAVES = register("yellow_maple_leaves",
 		LeavesWithLitterBlock::new,
 		Properties.ofFullCopy(CYPRESS_LEAVES).mapColor(MapColor.COLOR_YELLOW)
@@ -763,21 +700,6 @@ public final class WWBlocks {
 			.sound(SoundType.WOOD)
 			.ignitedByLava()
 	);
-	public static final PaleMushroomBlock PALE_MUSHROOM = register("pale_mushroom",
-		properties -> new PaleMushroomBlock(WWTreeConfigured.HUGE_PALE_MUSHROOM.getKey(), properties),
-		BlockBehaviour.Properties.of()
-			.mapColor(MapColor.COLOR_GRAY)
-			.noCollission()
-			.randomTicks()
-			.instabreak()
-			.sound(SoundType.GRASS)
-			.hasPostProcess(Blocks::always)
-			.pushReaction(PushReaction.DESTROY)
-	);
-	public static final Block POTTED_PALE_MUSHROOM = register("potted_pale_mushroom",
-		properties -> new FlowerPotBlock(PALE_MUSHROOM, properties),
-		Blocks.flowerPotProperties()
-	);
 	public static final PaleShelfFungiBlock PALE_SHELF_FUNGI = register("pale_shelf_fungi",
 		PaleShelfFungiBlock::new,
 		Properties.ofFullCopy(PALE_MUSHROOM_BLOCK)
@@ -820,12 +742,6 @@ public final class WWBlocks {
 		Block::new,
 		Properties.ofFullCopy(Blocks.STONE)
 			.sound(WWSoundTypes.NULL_BLOCK)
-	);
-
-	public static final DisplayLanternBlock DISPLAY_LANTERN = registerWithoutItem("display_lantern",
-		DisplayLanternBlock::new,
-		Properties.of().mapColor(MapColor.METAL).forceSolidOn().strength(3.5F).sound(SoundType.LANTERN)
-			.lightLevel(state -> state.getValue(WWBlockStateProperties.DISPLAY_LIGHT))
 	);
 
 	public static final GeyserBlock GEYSER = register("geyser",
@@ -1449,7 +1365,6 @@ public final class WWBlocks {
 	}
 
 	public static void registerBlockProperties() {
-		registerDispenses();
 
 		var sign = (FabricBlockEntityType) BlockEntityType.SIGN;
 		var hangingSign = (FabricBlockEntityType) BlockEntityType.HANGING_SIGN;
@@ -1479,25 +1394,6 @@ public final class WWBlocks {
 		registerBonemeal();
 		registerAxe();
 		registerInventories();
-	}
-
-	private static void registerDispenses() {
-		DispenserBlock.registerBehavior(TUMBLEWEED, new DefaultDispenseItemBehavior() {
-			@Override
-			@NotNull
-			public ItemStack execute(@NotNull BlockSource source, @NotNull ItemStack stack) {
-				Level level = source.level();
-				Direction direction = source.state().getValue(DispenserBlock.FACING);
-				Vec3 position = source.center().add(direction.getStepX(), direction.getStepY(), direction.getStepZ());
-				Tumbleweed tumbleweed = new Tumbleweed(WWEntityTypes.TUMBLEWEED, level);
-				Vec3 vec3 = new Vec3(direction.getStepX(), direction.getStepY() + 0.1D, direction.getStepZ()).normalize().add(level.random.triangle(0D, 0.0172275D * 6D), level.random.triangle(0D, 0.0172275D * 6D), level.random.triangle(0D, 0.0172275D * 6D)).scale(1.1D);
-				tumbleweed.setDeltaMovement(vec3);
-				tumbleweed.setPos(position);
-				level.addFreshEntity(tumbleweed);
-				stack.shrink(1);
-				return stack;
-			}
-		});
 	}
 
 	private static void registerStrippable() {
@@ -1538,15 +1434,9 @@ public final class WWBlocks {
 		CompostingChanceRegistry.INSTANCE.add(BROWN_SHELF_FUNGI, 0.65F);
 		CompostingChanceRegistry.INSTANCE.add(RED_SHELF_FUNGI, 0.65F);
 		CompostingChanceRegistry.INSTANCE.add(CYPRESS_LEAVES, 0.3F);
-		CompostingChanceRegistry.INSTANCE.add(BAOBAB_LEAVES, 0.3F);
-		CompostingChanceRegistry.INSTANCE.add(PALM_FRONDS, 0.3F);
 		CompostingChanceRegistry.INSTANCE.add(YELLOW_MAPLE_LEAVES, 0.3F);
 		CompostingChanceRegistry.INSTANCE.add(ORANGE_MAPLE_LEAVES, 0.3F);
 		CompostingChanceRegistry.INSTANCE.add(RED_MAPLE_LEAVES, 0.3F);
-		CompostingChanceRegistry.INSTANCE.add(CYPRESS_SAPLING, 0.3F);
-		CompostingChanceRegistry.INSTANCE.add(BAOBAB_NUT, 0.3F);
-		CompostingChanceRegistry.INSTANCE.add(MAPLE_SAPLING, 0.3F);
-		CompostingChanceRegistry.INSTANCE.add(WWItems.COCONUT, 0.65F);
 		CompostingChanceRegistry.INSTANCE.add(WWItems.SPLIT_COCONUT, 0.3F);
 		CompostingChanceRegistry.INSTANCE.add(GLORY_OF_THE_SNOW, 0.65F);
 		CompostingChanceRegistry.INSTANCE.add(BLUE_GLORY_OF_THE_SNOW_PETALS, 0.65F);
@@ -1619,7 +1509,6 @@ public final class WWBlocks {
 		flammableBlockRegistry.add(BAOBAB_FENCE_GATE, 5, 20);
 		flammableBlockRegistry.add(BAOBAB_PRESSURE_PLATE, 5, 20);
 		flammableBlockRegistry.add(BAOBAB_TRAPDOOR, 5, 20);
-		flammableBlockRegistry.add(BAOBAB_LEAVES, 100, 60);
 		flammableBlockRegistry.add(BAOBAB_BUTTON, 5, 20);
 		flammableBlockRegistry.add(BAOBAB_SIGN, 5, 20);
 		flammableBlockRegistry.add(BAOBAB_WALL_SIGN, 5, 20);
@@ -1661,7 +1550,6 @@ public final class WWBlocks {
 		flammableBlockRegistry.add(PALM_FENCE_GATE, 5, 20);
 		flammableBlockRegistry.add(PALM_PRESSURE_PLATE, 5, 20);
 		flammableBlockRegistry.add(PALM_TRAPDOOR, 5, 20);
-		flammableBlockRegistry.add(PALM_FRONDS, 100, 60);
 		flammableBlockRegistry.add(PALM_BUTTON, 5, 20);
 		flammableBlockRegistry.add(PALM_SIGN, 5, 20);
 		flammableBlockRegistry.add(PALM_WALL_SIGN, 5, 20);
@@ -1699,8 +1587,6 @@ public final class WWBlocks {
 		WWConstants.logWithModId("Registering Fuels for", WWConstants.UNSTABLE_LOGGING);
 
 		FuelRegistryEvents.BUILD.register((builder, context) -> {
-			builder.add(WWItems.BAOBAB_BOAT, 1200);
-			builder.add(WWItems.BAOBAB_CHEST_BOAT, 1200);
 			builder.add(BAOBAB_LOG.asItem(), 300);
 			builder.add(STRIPPED_BAOBAB_LOG.asItem(), 300);
 			builder.add(BAOBAB_WOOD.asItem(), 300);
@@ -1715,10 +1601,6 @@ public final class WWBlocks {
 			builder.add(BAOBAB_FENCE.asItem(), 300);
 			builder.add(WWItems.BAOBAB_SIGN, 300);
 			builder.add(WWItems.BAOBAB_HANGING_SIGN, 800);
-			builder.add(WWItems.BAOBAB_NUT, 100);
-
-			builder.add(WWItems.CYPRESS_BOAT, 1200);
-			builder.add(WWItems.CYPRESS_CHEST_BOAT, 1200);
 			builder.add(CYPRESS_LOG.asItem(), 300);
 			builder.add(STRIPPED_CYPRESS_LOG.asItem(), 300);
 			builder.add(CYPRESS_WOOD.asItem(), 300);
@@ -1733,10 +1615,7 @@ public final class WWBlocks {
 			builder.add(CYPRESS_FENCE.asItem(), 300);
 			builder.add(WWItems.CYPRESS_SIGN, 300);
 			builder.add(WWItems.CYPRESS_HANGING_SIGN, 800);
-			builder.add(CYPRESS_SAPLING.asItem(), 100);
 
-			builder.add(WWItems.PALM_BOAT, 1200);
-			builder.add(WWItems.PALM_CHEST_BOAT, 1200);
 			builder.add(PALM_LOG.asItem(), 300);
 			builder.add(STRIPPED_PALM_LOG.asItem(), 300);
 			builder.add(PALM_WOOD.asItem(), 300);
@@ -1751,11 +1630,8 @@ public final class WWBlocks {
 			builder.add(PALM_FENCE.asItem(), 300);
 			builder.add(WWItems.PALM_SIGN, 300);
 			builder.add(WWItems.PALM_HANGING_SIGN, 800);
-			builder.add(WWItems.COCONUT, 150); // COCONUT OIL IS KNOWN TO BE FLAMMABLE :)
 			builder.add(WWItems.SPLIT_COCONUT, 75);
 
-			builder.add(WWItems.MAPLE_BOAT, 1200);
-			builder.add(WWItems.MAPLE_CHEST_BOAT, 1200);
 			builder.add(MAPLE_LOG.asItem(), 300);
 			builder.add(STRIPPED_MAPLE_LOG.asItem(), 300);
 			builder.add(MAPLE_WOOD.asItem(), 300);
@@ -1770,7 +1646,6 @@ public final class WWBlocks {
 			builder.add(MAPLE_FENCE.asItem(), 300);
 			builder.add(WWItems.MAPLE_SIGN, 300);
 			builder.add(WWItems.MAPLE_HANGING_SIGN, 800);
-			builder.add(MAPLE_SAPLING.asItem(), 100);
 
 			builder.add(HOLLOWED_WARPED_STEM.asItem(), 300);
 			builder.add(HOLLOWED_CRIMSON_STEM.asItem(), 300);
@@ -1849,9 +1724,6 @@ public final class WWBlocks {
 				@Override
 				public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
 					BlockPos blockPos = pos.above();
-					Optional<Holder.Reference<PlacedFeature>> optional = level.registryAccess()
-						.lookupOrThrow(Registries.PLACED_FEATURE)
-						.get(WWMiscPlaced.MYCELIUM_GROWTH_BONEMEAL.getKey());
 
 					masterLoop:
 					for (int i = 0; i < 128; i++) {
@@ -1864,11 +1736,6 @@ public final class WWBlocks {
 							}
 						}
 
-						BlockState blockState2 = level.getBlockState(blockPos2);
-						if (blockState2.isAir()) {
-							if (optional.isEmpty()) continue;
-							optional.get().value().place(level, level.getChunkSource().getGenerator(), random, blockPos2);
-						}
 					}
 				}
 

@@ -21,7 +21,6 @@ package net.frozenblock.wilderwild.registry;
 import java.util.List;
 import java.util.function.UnaryOperator;
 import net.frozenblock.wilderwild.WWConstants;
-import net.frozenblock.wilderwild.block.entity.DisplayLanternBlockEntity;
 import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.BuiltInRegistries;
@@ -30,11 +29,6 @@ import net.minecraft.world.item.component.CustomData;
 import org.jetbrains.annotations.NotNull;
 
 public final class WWDataComponents {
-	public static final DataComponentType<List<DisplayLanternBlockEntity.Occupant>> FIREFLIES = register(
-		"fireflies",
-		builder -> builder.persistent(DisplayLanternBlockEntity.Occupant.LIST_CODEC)
-			.networkSynchronized(DisplayLanternBlockEntity.Occupant.STREAM_CODEC.apply(ByteBufCodecs.list()))
-	);
 	public static final DataComponentType<CustomData> BOTTLE_ENTITY_DATA = register(
 		"bottle_entity_data",
 		builder -> builder.persistent(CustomData.CODEC)

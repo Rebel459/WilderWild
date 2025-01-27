@@ -1,7 +1,0 @@
-{
-  "biomes": "#wilderwild:entity/variant/moobloom_poppy",
-  "flower_block_state": {
-    "Name": "minecraft:poppy"
-  },
-  "texture": "wilderwild:entity/moobloom/moobloom_poppy"
-}

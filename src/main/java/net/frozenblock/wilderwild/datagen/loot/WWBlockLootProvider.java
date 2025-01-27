@@ -75,7 +75,6 @@ public final class WWBlockLootProvider extends FabricBlockLootTableProvider {
 		this.add(WWBlocks.BAOBAB_DOOR, this::createDoorTable);
 		this.dropSelf(WWBlocks.BAOBAB_SIGN);
 		this.dropSelf(WWBlocks.BAOBAB_HANGING_SIGN);
-		WWBlockLootHelper.makeNonSaplingLeavesLoot(this, WWBlocks.BAOBAB_LEAVES, registryLookup);
 
 		this.dropSelf(WWBlocks.CYPRESS_LOG);
 		this.dropSelf(WWBlocks.STRIPPED_CYPRESS_LOG);
@@ -94,8 +93,6 @@ public final class WWBlockLootProvider extends FabricBlockLootTableProvider {
 		this.add(WWBlocks.CYPRESS_DOOR, this::createDoorTable);
 		this.dropSelf(WWBlocks.CYPRESS_SIGN);
 		this.dropSelf(WWBlocks.CYPRESS_HANGING_SIGN);
-		this.dropSelf(WWBlocks.CYPRESS_SAPLING);
-		this.add(WWBlocks.CYPRESS_LEAVES, block -> this.createLeavesDrops(block, WWBlocks.CYPRESS_SAPLING, NORMAL_LEAVES_SAPLING_CHANCES));
 
 		this.dropSelf(WWBlocks.PALM_LOG);
 		this.dropSelf(WWBlocks.STRIPPED_PALM_LOG);
@@ -114,7 +111,6 @@ public final class WWBlockLootProvider extends FabricBlockLootTableProvider {
 		this.add(WWBlocks.PALM_DOOR, this::createDoorTable);
 		this.dropSelf(WWBlocks.PALM_SIGN);
 		this.dropSelf(WWBlocks.PALM_HANGING_SIGN);
-		WWBlockLootHelper.makeNonSaplingLeavesLoot(this, WWBlocks.PALM_FRONDS, registryLookup);
 
 		this.dropSelf(WWBlocks.MAPLE_LOG);
 		this.dropSelf(WWBlocks.STRIPPED_MAPLE_LOG);
@@ -133,10 +129,6 @@ public final class WWBlockLootProvider extends FabricBlockLootTableProvider {
 		this.add(WWBlocks.MAPLE_DOOR, this::createDoorTable);
 		this.dropSelf(WWBlocks.MAPLE_SIGN);
 		this.dropSelf(WWBlocks.MAPLE_HANGING_SIGN);
-		this.dropSelf(WWBlocks.MAPLE_SAPLING);
-		this.add(WWBlocks.YELLOW_MAPLE_LEAVES, block -> this.createLeavesDrops(block, WWBlocks.MAPLE_SAPLING, NORMAL_LEAVES_SAPLING_CHANCES));
-		this.add(WWBlocks.ORANGE_MAPLE_LEAVES, block -> this.createLeavesDrops(block, WWBlocks.MAPLE_SAPLING, NORMAL_LEAVES_SAPLING_CHANCES));
-		this.add(WWBlocks.RED_MAPLE_LEAVES, block -> this.createLeavesDrops(block, WWBlocks.MAPLE_SAPLING, NORMAL_LEAVES_SAPLING_CHANCES));
 
 		this.dropSelf(WWBlocks.HOLLOWED_ACACIA_LOG);
 		this.dropSelf(WWBlocks.STRIPPED_HOLLOWED_ACACIA_LOG);
@@ -254,53 +246,6 @@ public final class WWBlockLootProvider extends FabricBlockLootTableProvider {
 				)
 		);
 
-		this.add(WWBlocks.BAOBAB_NUT,
-			LootTable.lootTable()
-				.withPool(
-					this.applyExplosionCondition(
-						WWBlocks.BAOBAB_NUT,
-						LootPool.lootPool()
-							.setRolls(ConstantValue.exactly(1F))
-							.when(
-								LootItemBlockStatePropertyCondition.hasBlockStateProperties(WWBlocks.BAOBAB_NUT)
-									.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.AGE_2, 2))
-							)
-							.add(LootItem.lootTableItem(WWBlocks.BAOBAB_NUT))
-					)
-				)
-		);
-
-		this.add(WWBlocks.COCONUT,
-			LootTable.lootTable()
-				.withPool(
-					this.applyExplosionCondition(
-						WWBlocks.COCONUT,
-						LootPool.lootPool()
-							.setRolls(ConstantValue.exactly(1F))
-							.when(
-								LootItemBlockStatePropertyCondition.hasBlockStateProperties(WWBlocks.COCONUT)
-									.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BlockStateProperties.HANGING, false))
-							)
-							.add(LootItem.lootTableItem(WWBlocks.COCONUT))
-					)
-				).withPool(
-					this.applyExplosionDecay(
-						WWBlocks.COCONUT,
-						LootPool.lootPool()
-							.setRolls(UniformGenerator.between(3F, 4F))
-							.when(
-								LootItemBlockStatePropertyCondition.hasBlockStateProperties(WWBlocks.COCONUT)
-									.setProperties(
-										StatePropertiesPredicate.Builder.properties()
-											.hasProperty(BlockStateProperties.HANGING, true)
-											.hasProperty(BlockStateProperties.AGE_2, 2)
-									)
-							)
-							.add(LootItem.lootTableItem(WWBlocks.COCONUT))
-					)
-				)
-		);
-
 		this.add(WWBlocks.BUSH,
 			LootTable.lootTable()
 				.withPool(
@@ -337,10 +282,6 @@ public final class WWBlockLootProvider extends FabricBlockLootTableProvider {
 
 		this.dropPottedContents(WWBlocks.POTTED_SHORT_GRASS);
 		this.dropPottedContents(WWBlocks.POTTED_BUSH);
-		this.dropPottedContents(WWBlocks.POTTED_BAOBAB_NUT);
-		this.dropPottedContents(WWBlocks.POTTED_COCONUT);
-		this.dropPottedContents(WWBlocks.POTTED_CYPRESS_SAPLING);
-		this.dropPottedContents(WWBlocks.POTTED_MAPLE_SAPLING);
 		this.dropPottedContents(WWBlocks.POTTED_CARNATION);
 		this.dropPottedContents(WWBlocks.POTTED_SEEDING_DANDELION);
 		this.dropPottedContents(WWBlocks.POTTED_TUMBLEWEED_PLANT);
@@ -396,20 +337,6 @@ public final class WWBlockLootProvider extends FabricBlockLootTableProvider {
 		);
 		this.dropSelf(WWBlocks.STONE_CHEST);
 
-		this.add(
-			WWBlocks.DISPLAY_LANTERN,
-			LootTable.lootTable()
-				.withPool(
-					LootPool.lootPool()
-						.setRolls(ConstantValue.exactly(1F))
-						.add(LootItem.lootTableItem(WWBlocks.DISPLAY_LANTERN).when(ExplosionCondition.survivesExplosion()))
-						.apply(
-							CopyComponentsFunction.copyComponents(CopyComponentsFunction.Source.BLOCK_ENTITY).include(WWDataComponents.FIREFLIES)
-								.when(this.hasSilkTouch())
-						)
-				)
-		);
-
 		this.add(WWBlocks.ECHO_GLASS,
 			LootTable.lootTable()
 				.withPool(
@@ -434,13 +361,8 @@ public final class WWBlockLootProvider extends FabricBlockLootTableProvider {
 
 		WWBlockLootHelper.makeShelfFungiLoot(this, WWBlocks.BROWN_SHELF_FUNGI, Items.BROWN_MUSHROOM);
 		WWBlockLootHelper.makeShelfFungiLoot(this, WWBlocks.RED_SHELF_FUNGI, Items.RED_MUSHROOM);
-		WWBlockLootHelper.makeShelfFungiLoot(this, WWBlocks.PALE_SHELF_FUNGI, WWBlocks.PALE_MUSHROOM);
 		WWBlockLootHelper.makeShelfFungiLoot(this, WWBlocks.CRIMSON_SHELF_FUNGI, Items.CRIMSON_FUNGUS);
 		WWBlockLootHelper.makeShelfFungiLoot(this, WWBlocks.WARPED_SHELF_FUNGI, Items.WARPED_FUNGUS);
-
-		this.dropSelf(WWBlocks.PALE_MUSHROOM);
-		this.dropPottedContents(WWBlocks.POTTED_PALE_MUSHROOM);
-		this.add(WWBlocks.PALE_MUSHROOM_BLOCK, block -> this.createMushroomBlockDrop(block, WWBlocks.PALE_MUSHROOM));
 
 		this.dropSelf(WWBlocks.CHISELED_MUD_BRICKS);
 		this.dropSelf(WWBlocks.CRACKED_MUD_BRICKS);

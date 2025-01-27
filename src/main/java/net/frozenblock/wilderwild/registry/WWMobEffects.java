@@ -21,7 +21,6 @@ package net.frozenblock.wilderwild.registry;
 import net.frozenblock.lib.block.api.beacon.BeaconEffectRegistry;
 import net.frozenblock.wilderwild.WWConstants;
 import net.frozenblock.wilderwild.config.WWEntityConfig;
-import net.frozenblock.wilderwild.entity.effect.ScorchingMobEffect;
 import net.minecraft.core.Holder;
 import net.minecraft.core.Holder.Reference;
 import net.minecraft.core.Registry;
@@ -50,17 +49,6 @@ public final class WWMobEffects {
 			WWConstants.id("entity_reach_boost"),
 			WWEntityConfig.get().crab.reachAffectsAttack ? 1.5D : 0D,
 			AttributeModifier.Operation.ADD_VALUE
-		)
-	);
-
-	public static final Holder<MobEffect> SCORCHING = register(
-		"scorching",
-		new ScorchingMobEffect(
-			MobEffectCategory.HARMFUL,
-			6236672,
-			0.25F,
-			random -> Mth.randomBetweenInclusive(random, 1, 6),
-			random -> Mth.randomBetweenInclusive(random, 1, 4)
 		)
 	);
 

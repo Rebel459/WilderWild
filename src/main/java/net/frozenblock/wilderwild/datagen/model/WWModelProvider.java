@@ -43,13 +43,11 @@ public final class WWModelProvider extends FabricModelProvider {
 		generator.woodProvider(WWBlocks.BAOBAB_LOG).logWithHorizontal(WWBlocks.BAOBAB_LOG).wood(WWBlocks.BAOBAB_WOOD);
 		generator.woodProvider(WWBlocks.STRIPPED_BAOBAB_LOG).logWithHorizontal(WWBlocks.STRIPPED_BAOBAB_LOG).wood(WWBlocks.STRIPPED_BAOBAB_WOOD);
 		generator.createHangingSign(WWBlocks.STRIPPED_BAOBAB_LOG, WWBlocks.BAOBAB_HANGING_SIGN, WWBlocks.BAOBAB_WALL_HANGING_SIGN);
-		generator.createTintedLeaves(WWBlocks.BAOBAB_LEAVES, TexturedModel.LEAVES, FoliageColor.FOLIAGE_DEFAULT);
 
 		generator.family(WWBlocks.CYPRESS_PLANKS).generateFor(WWBlocks.FAMILY_CYPRESS);
 		generator.woodProvider(WWBlocks.CYPRESS_LOG).logWithHorizontal(WWBlocks.CYPRESS_LOG).wood(WWBlocks.CYPRESS_WOOD);
 		generator.woodProvider(WWBlocks.STRIPPED_CYPRESS_LOG).logWithHorizontal(WWBlocks.STRIPPED_CYPRESS_LOG).wood(WWBlocks.STRIPPED_CYPRESS_WOOD);
 		generator.createHangingSign(WWBlocks.STRIPPED_CYPRESS_LOG, WWBlocks.CYPRESS_HANGING_SIGN, WWBlocks.CYPRESS_WALL_HANGING_SIGN);
-		generator.createPlantWithDefaultItem(WWBlocks.CYPRESS_SAPLING, WWBlocks.POTTED_CYPRESS_SAPLING, BlockModelGenerators.PlantType.NOT_TINTED);
 		generator.createTintedLeaves(WWBlocks.CYPRESS_LEAVES, TexturedModel.LEAVES, FoliageColor.FOLIAGE_DEFAULT);
 
 		BlockModelGenerators.BlockFamilyProvider palmFamily = generator.family(WWBlocks.PALM_PLANKS);
@@ -59,7 +57,6 @@ public final class WWModelProvider extends FabricModelProvider {
 		generator.woodProvider(WWBlocks.PALM_LOG).logWithHorizontal(WWBlocks.PALM_LOG).wood(WWBlocks.PALM_WOOD);
 		generator.woodProvider(WWBlocks.STRIPPED_PALM_LOG).logWithHorizontal(WWBlocks.STRIPPED_PALM_LOG).wood(WWBlocks.STRIPPED_PALM_WOOD);
 		generator.createHangingSign(WWBlocks.STRIPPED_PALM_LOG, WWBlocks.PALM_HANGING_SIGN, WWBlocks.PALM_WALL_HANGING_SIGN);
-		generator.createTintedLeaves(WWBlocks.PALM_FRONDS, TexturedModel.LEAVES, FoliageColor.FOLIAGE_DEFAULT);
 
 		BlockModelGenerators.BlockFamilyProvider mapleFamily = generator.family(WWBlocks.MAPLE_PLANKS);
 		mapleFamily.skipGeneratingModelsFor.add(WWBlocks.MAPLE_TRAPDOOR);
@@ -67,7 +64,6 @@ public final class WWModelProvider extends FabricModelProvider {
 		generator.woodProvider(WWBlocks.MAPLE_LOG).logWithHorizontal(WWBlocks.MAPLE_LOG).wood(WWBlocks.MAPLE_WOOD);
 		generator.woodProvider(WWBlocks.STRIPPED_MAPLE_LOG).logWithHorizontal(WWBlocks.STRIPPED_MAPLE_LOG).wood(WWBlocks.STRIPPED_MAPLE_WOOD);
 		generator.createHangingSign(WWBlocks.STRIPPED_MAPLE_LOG, WWBlocks.MAPLE_HANGING_SIGN, WWBlocks.MAPLE_WALL_HANGING_SIGN);
-		generator.createPlantWithDefaultItem(WWBlocks.MAPLE_SAPLING, WWBlocks.POTTED_MAPLE_SAPLING, BlockModelGenerators.PlantType.NOT_TINTED);
 		generator.createTrivialBlock(WWBlocks.YELLOW_MAPLE_LEAVES, TexturedModel.LEAVES);
 		generator.createTrivialBlock(WWBlocks.ORANGE_MAPLE_LEAVES, TexturedModel.LEAVES);
 		generator.createTrivialBlock(WWBlocks.RED_MAPLE_LEAVES, TexturedModel.LEAVES);
@@ -89,7 +85,6 @@ public final class WWModelProvider extends FabricModelProvider {
 		WWModelHelper.createMultifaceBlock(generator, WWBlocks.POLLEN);
 
 		WWModelHelper.generatePaleMushroomBlock(generator);
-		generator.createPlantWithDefaultItem(WWBlocks.PALE_MUSHROOM, WWBlocks.POTTED_PALE_MUSHROOM, BlockModelGenerators.PlantType.NOT_TINTED);
 
 		generator.registerSimpleFlatItemModel(WWBlocks.GLORY_OF_THE_SNOW);
 		WWModelHelper.createMultifaceBlock(generator, WWBlocks.BLUE_GLORY_OF_THE_SNOW_PETALS);
@@ -163,31 +158,17 @@ public final class WWModelProvider extends FabricModelProvider {
 	@Override
 	public void generateItemModels(@NotNull ItemModelGenerators generator) {
 		generator.generateFlatItem(WWBlocks.BUSH.asItem(), ModelTemplates.FLAT_ITEM);
-		generator.generateFlatItem(WWBlocks.DISPLAY_LANTERN.asItem(), ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(WWBlocks.HANGING_TENDRIL.asItem(), ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(WWBlocks.CATTAIL.asItem(), ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(WWBlocks.SPONGE_BUD.asItem(), ModelTemplates.FLAT_ITEM);
 
-		generator.generateFlatItem(WWItems.BAOBAB_NUT, ModelTemplates.FLAT_ITEM);
-		generator.generateFlatItem(WWItems.COCONUT, ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(WWItems.SPLIT_COCONUT, ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(WWItems.MILKWEED_POD, ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(WWItems.PRICKLY_PEAR, ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(WWItems.PEELED_PRICKLY_PEAR, ModelTemplates.FLAT_ITEM);
 
-		generator.generateFlatItem(WWItems.JELLYFISH_BUCKET, ModelTemplates.FLAT_ITEM);
-		generator.generateFlatItem(WWItems.CRAB_BUCKET, ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(WWItems.CRAB_CLAW, ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(WWItems.COOKED_CRAB_CLAW, ModelTemplates.FLAT_ITEM);
-
-		generator.generateFlatItem(WWItems.BAOBAB_BOAT, ModelTemplates.FLAT_ITEM);
-		generator.generateFlatItem(WWItems.BAOBAB_CHEST_BOAT, ModelTemplates.FLAT_ITEM);
-		generator.generateFlatItem(WWItems.CYPRESS_BOAT, ModelTemplates.FLAT_ITEM);
-		generator.generateFlatItem(WWItems.CYPRESS_CHEST_BOAT, ModelTemplates.FLAT_ITEM);
-		generator.generateFlatItem(WWItems.PALM_BOAT, ModelTemplates.FLAT_ITEM);
-		generator.generateFlatItem(WWItems.PALM_CHEST_BOAT, ModelTemplates.FLAT_ITEM);
-		generator.generateFlatItem(WWItems.MAPLE_BOAT, ModelTemplates.FLAT_ITEM);
-		generator.generateFlatItem(WWItems.MAPLE_CHEST_BOAT, ModelTemplates.FLAT_ITEM);
 
 		generator.generateFlatItem(WWBlocks.FLOWERING_LILY_PAD.asItem(), ModelTemplates.FLAT_ITEM);
 		generator.generateFlatItem(WWBlocks.OSTRICH_EGG.asItem(), ModelTemplates.FLAT_ITEM);
@@ -206,17 +187,5 @@ public final class WWModelProvider extends FabricModelProvider {
 		WWModelHelper.generateScorchedSandItem(generator, WWItems.SCORCHED_RED_SAND);
 		WWModelHelper.generateEchoGlass(generator, WWItems.ECHO_GLASS);
 
-		// Spawn Eggs
-		generator.generateSpawnEgg(WWItems.FIREFLY_SPAWN_EGG, Integer.parseInt("2A2E2B", 16), Integer.parseInt("AAF644", 16));
-		generator.generateSpawnEgg(WWItems.JELLYFISH_SPAWN_EGG, Integer.parseInt("E484E4", 16), Integer.parseInt("DF71DC", 16));
-		generator.generateSpawnEgg(WWItems.CRAB_SPAWN_EGG, Integer.parseInt("F98334", 16), Integer.parseInt("F9C366", 16));
-		generator.generateSpawnEgg(WWItems.OSTRICH_SPAWN_EGG, Integer.parseInt("FAE0D0", 16), Integer.parseInt("5B4024", 16));
-		generator.generateSpawnEgg(WWItems.SCORCHED_SPAWN_EGG, Integer.parseInt("4C2516", 16), Integer.parseInt("FFB800", 16));
-		generator.generateSpawnEgg(WWItems.BUTTERFLY_SPAWN_EGG, Integer.parseInt("542003", 16), Integer.parseInt("FFCF60", 16));
-		generator.generateSpawnEgg(WWItems.MOOBLOOM_SPAWN_EGG, Integer.parseInt("FED639", 16), Integer.parseInt("F7EDC1", 16));
-
-		// Firefly Bottles
-		WWModelHelper.generateFireflyBottles(generator);
-		generator.generateFlatItem(WWItems.BUTTERFLY_BOTTLE, ModelTemplates.FLAT_ITEM);
 	}
 }

@@ -24,7 +24,6 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.frozenblock.lib.math.api.AdvancedMath;
 import net.frozenblock.wilderwild.block.entity.StoneChestBlockEntity;
 import net.frozenblock.wilderwild.config.WWEntityConfig;
-import net.frozenblock.wilderwild.entity.Jellyfish;
 import net.frozenblock.wilderwild.networking.packet.WWJellyfishStingPacket;
 import net.frozenblock.wilderwild.networking.packet.WWLightningStrikePacket;
 import net.frozenblock.wilderwild.networking.packet.WWScorchingFirePlacePacket;
@@ -55,7 +54,6 @@ public final class WWClientNetworking {
 
 	public static void registerPacketReceivers() {
 		receiveWindExtensionSyncPacket();
-		receiveJellyfishStingPacket();
 		receiveLightningStrikePacket();
 		receiveStoneChestLidPacket();
 		receiveScorchingFirePlacePacket();
@@ -67,23 +65,6 @@ public final class WWClientNetworking {
 			WWClientWindManager.cloudX = cloudPos.x();
 			WWClientWindManager.cloudY = cloudPos.y();
 			WWClientWindManager.cloudZ = cloudPos.z();
-		});
-	}
-
-	public static void receiveJellyfishStingPacket() {
-		ClientPlayNetworking.registerGlobalReceiver(WWJellyfishStingPacket.PACKET_TYPE, (packet, ctx) -> {
-			Player player = Minecraft.getInstance().player;
-			ClientLevel clientLevel = ctx.client().level;
-			clientLevel.playSound(
-				player,
-				player.getX(),
-				player.getY(),
-				player.getZ(),
-				WWSounds.ENTITY_JELLYFISH_STING,
-				SoundSource.NEUTRAL,
-				1F,
-				packet.isBaby() ? Jellyfish.STING_PITCH_BABY : Jellyfish.STING_PITCH
-			);
 		});
 	}
 

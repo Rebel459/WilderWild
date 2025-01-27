@@ -1,7 +1,0 @@
-{
-  "biomes": "#wilderwild:entity/variant/moobloom_carnation",
-  "flower_block_state": {
-    "Name": "wilderwild:carnation"
-  },
-  "texture": "wilderwild:entity/moobloom/moobloom_carnation"
-}

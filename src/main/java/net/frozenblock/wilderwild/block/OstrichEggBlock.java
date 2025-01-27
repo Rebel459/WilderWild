@@ -19,15 +19,8 @@
 package net.frozenblock.wilderwild.block;
 
 import com.mojang.serialization.MapCodec;
-import net.frozenblock.wilderwild.entity.Ostrich;
-import net.frozenblock.wilderwild.registry.WWEntityTypes;
-import net.frozenblock.wilderwild.registry.WWSounds;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.EntitySpawnReason;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -83,18 +76,6 @@ public class OstrichEggBlock extends Block {
 	}
 
 	@Override
-	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-		if (shouldUpdateHatchLevel(level, pos)) {
-			if (!this.isReadyToHatch(state)) {
-				level.playSound(null, pos, WWSounds.BLOCK_OSTRICH_EGG_CRACK, SoundSource.BLOCKS, 0.7F, 0.9F + random.nextFloat() * 0.2F);
-				level.setBlock(pos, state.cycle(HATCH), UPDATE_CLIENTS);
-			} else {
-				this.hatchOstrichEgg(level, pos, random);
-			}
-		}
-	}
-
-	@Override
 	public void onPlace(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState oldState, boolean movedByPiston) {
 		super.onPlace(state, level, pos, oldState, movedByPiston);
 		level.levelEvent(LevelEvent.PARTICLES_EGG_CRACK, pos, 0);
@@ -109,31 +90,10 @@ public class OstrichEggBlock extends Block {
 		}
 	}
 
-	private void hatchOstrichEgg(@NotNull ServerLevel level, BlockPos pos, @NotNull RandomSource random) {
-		level.playSound(null, pos, WWSounds.BLOCK_OSTRICH_EGG_HATCH, SoundSource.BLOCKS, 0.7F, 0.9F + random.nextFloat() * 0.2F);
-		this.destroyBlock(level, pos);
-		this.spawnOstrich(level, pos, random);
-	}
-
 	private void destroyBlock(@NotNull Level level, BlockPos pos) {
 		level.destroyBlock(pos, false);
 	}
 
-	private void spawnOstrich(ServerLevel level, BlockPos pos, @NotNull RandomSource random) {
-		Ostrich ostrich = WWEntityTypes.OSTRICH.create(level, EntitySpawnReason.BREEDING);
-		if (ostrich != null) {
-			ostrich.setBaby(true);
-			ostrich.moveTo(
-				pos.getX() + 0.5D,
-				pos.getY(),
-				pos.getZ() + 0.5D,
-				random.nextInt(1, 361),
-				0F
-			);
-			ostrich.setTamed(true);
-			level.addFreshEntity(ostrich);
-		}
-	}
 
 	@Override
 	public boolean isPathfindable(@NotNull BlockState state, @NotNull PathComputationType type) {

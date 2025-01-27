@@ -71,9 +71,6 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(WWBlocks.MILKWEED)
 			.add(WWBlocks.DATURA)
 			.add(WWBlocks.SEEDING_DANDELION)
-			.add(WWBlocks.CYPRESS_SAPLING)
-			.add(WWBlocks.BAOBAB_NUT)
-			.add(WWBlocks.COCONUT)
 			.add(WWBlocks.BROWN_SHELF_FUNGI)
 			.add(WWBlocks.RED_SHELF_FUNGI)
 			.add(WWBlocks.TUMBLEWEED_PLANT);
@@ -83,9 +80,6 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(WWBlocks.MILKWEED)
 			.add(WWBlocks.DATURA)
 			.add(WWBlocks.SEEDING_DANDELION)
-			.add(WWBlocks.CYPRESS_SAPLING)
-			.add(WWBlocks.BAOBAB_NUT)
-			.add(WWBlocks.COCONUT)
 			.add(WWBlocks.BROWN_SHELF_FUNGI)
 			.add(WWBlocks.RED_SHELF_FUNGI)
 			.add(WWBlocks.TUMBLEWEED_PLANT);
@@ -94,7 +88,6 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(WWBlocks.MILKWEED)
 			.add(WWBlocks.GLORY_OF_THE_SNOW)
 			.add(WWBlocks.SEEDING_DANDELION)
-			.add(WWBlocks.CYPRESS_SAPLING)
 			.add(WWBlocks.BROWN_SHELF_FUNGI)
 			.add(WWBlocks.RED_SHELF_FUNGI)
 			.add(WWBlocks.MARIGOLD)
@@ -112,9 +105,6 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(WWBlocks.DATURA)
 			.add(WWBlocks.GLORY_OF_THE_SNOW)
 			.add(WWBlocks.SEEDING_DANDELION)
-			.add(WWBlocks.CYPRESS_SAPLING)
-			.add(WWBlocks.BAOBAB_NUT)
-			.add(WWBlocks.COCONUT)
 			.add(WWBlocks.BROWN_SHELF_FUNGI)
 			.add(WWBlocks.RED_SHELF_FUNGI)
 			.add(WWBlocks.TUMBLEWEED)
@@ -769,7 +759,6 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(Blocks.CREAKING_HEART)
 			.add(Blocks.CLOSED_EYEBLOSSOM)
 			.add(Blocks.OPEN_EYEBLOSSOM)
-			.add(WWBlocks.PALE_MUSHROOM)
 			.add(WWBlocks.PALE_SHELF_FUNGI)
 			.add(WWBlocks.PALE_MUSHROOM_BLOCK);
 	}
@@ -788,8 +777,7 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(WWBlocks.PALE_SHELF_FUNGI)
 			.add(WWBlocks.CRIMSON_SHELF_FUNGI)
 			.add(WWBlocks.WARPED_SHELF_FUNGI)
-			.add(WWBlocks.PALE_MUSHROOM_BLOCK)
-			.add(WWBlocks.PALE_MUSHROOM);
+			.add(WWBlocks.PALE_MUSHROOM_BLOCK);
 
 		this.getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_HOE)
 			.add(Blocks.SWEET_BERRY_BUSH)
@@ -798,9 +786,7 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(WWBlocks.SCULK_STAIRS)
 			.add(WWBlocks.SCULK_WALL)
 			.add(WWBlocks.HANGING_TENDRIL)
-			.add(WWBlocks.BAOBAB_LEAVES)
 			.add(WWBlocks.CYPRESS_LEAVES)
-			.add(WWBlocks.PALM_FRONDS)
 			.add(WWBlocks.YELLOW_MAPLE_LEAVES)
 			.add(WWBlocks.ORANGE_MAPLE_LEAVES)
 			.add(WWBlocks.RED_MAPLE_LEAVES)
@@ -812,7 +798,6 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 		this.getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
 			.add(WWBlocks.STONE_CHEST)
 			.add(WWBlocks.NULL_BLOCK)
-			.add(WWBlocks.DISPLAY_LANTERN)
 			.add(WWBlocks.SCORCHED_SAND)
 			.add(WWBlocks.SCORCHED_RED_SAND)
 			.add(WWBlocks.GEYSER)
@@ -846,11 +831,7 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(WWBlocks.SPONGE_BUD)
 			.add(WWBlocks.PRICKLY_PEAR_CACTUS)
 			.add(WWBlocks.MYCELIUM_GROWTH)
-			.add(WWBlocks.PALE_MUSHROOM)
 			.addOptionalTag(WWBlockTags.NEMATOCYSTS);
-
-		this.getOrCreateTagBuilder(BlockTags.ENDERMAN_HOLDABLE)
-			.add(WWBlocks.PALE_MUSHROOM);
 
 		this.getOrCreateTagBuilder(BlockTags.SAND)
 			.add(WWBlocks.SCORCHED_SAND)
@@ -898,10 +879,6 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(WWBlocks.BUSH);
 
 		this.getOrCreateTagBuilder(BlockTags.FLOWER_POTS)
-			.add(WWBlocks.POTTED_BAOBAB_NUT)
-			.add(WWBlocks.POTTED_CYPRESS_SAPLING)
-			.add(WWBlocks.POTTED_COCONUT)
-			.add(WWBlocks.POTTED_MAPLE_SAPLING)
 			.add(WWBlocks.POTTED_BUSH)
 			.add(WWBlocks.POTTED_BIG_DRIPLEAF)
 			.add(WWBlocks.POTTED_SMALL_DRIPLEAF)
@@ -913,8 +890,7 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(WWBlocks.POTTED_CARNATION)
 			.add(WWBlocks.POTTED_MARIGOLD)
 			.add(WWBlocks.POTTED_SEEDING_DANDELION)
-			.add(WWBlocks.POTTED_PASQUEFLOWER)
-			.add(WWBlocks.POTTED_PALE_MUSHROOM);
+			.add(WWBlocks.POTTED_PASQUEFLOWER);
 
 		this.getOrCreateTagBuilder(BlockTags.FLOWERS)
 			.add(WWBlocks.DATURA)
@@ -1074,9 +1050,7 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.addOptionalTag(WWBlockTags.HOLLOWED_LOGS_THAT_BURN);
 
 		this.getOrCreateTagBuilder(BlockTags.LEAVES)
-			.add(WWBlocks.BAOBAB_LEAVES)
 			.add(WWBlocks.CYPRESS_LEAVES)
-			.add(WWBlocks.PALM_FRONDS)
 			.add(WWBlocks.YELLOW_MAPLE_LEAVES)
 			.add(WWBlocks.ORANGE_MAPLE_LEAVES)
 			.add(WWBlocks.RED_MAPLE_LEAVES);
@@ -1091,12 +1065,6 @@ public final class WWBlockTagProvider extends FabricTagProvider.BlockTagProvider
 			.add(WWBlocks.CYPRESS_PLANKS)
 			.add(WWBlocks.PALM_PLANKS)
 			.add(WWBlocks.MAPLE_PLANKS);
-
-		this.getOrCreateTagBuilder(BlockTags.SAPLINGS)
-			.add(WWBlocks.BAOBAB_NUT)
-			.add(WWBlocks.CYPRESS_SAPLING)
-			.add(WWBlocks.COCONUT)
-			.add(WWBlocks.MAPLE_SAPLING);
 
 		this.getOrCreateTagBuilder(BlockTags.STANDING_SIGNS)
 			.add(WWBlocks.BAOBAB_SIGN)

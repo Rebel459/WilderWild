@@ -204,17 +204,6 @@ public final class WWParticleTypes {
 		true,
 		true
 	);
-	public static final ParticleType<WWFallingLeavesParticleOptions> BAOBAB_LEAVES = createLeafParticle(
-		WWConstants.id("baobab_leaves"),
-		WWBlocks.BAOBAB_LEAVES,
-		0.0045F,
-		() -> WWAmbienceAndMiscConfig.Client.BAOBAB_LEAF_FREQUENCY,
-		4,
-		2F,
-		15F,
-		true,
-		true
-	);
 	public static final ParticleType<WWFallingLeavesParticleOptions> CYPRESS_LEAVES = createLeafParticle(
 		WWConstants.id("cypress_leaves"),
 		WWBlocks.CYPRESS_LEAVES,
@@ -222,17 +211,6 @@ public final class WWParticleTypes {
 		() -> WWAmbienceAndMiscConfig.Client.CYPRESS_LEAF_FREQUENCY,
 		4,
 		2F,
-		5F,
-		false,
-		true
-	);
-	public static final ParticleType<WWFallingLeavesParticleOptions> PALM_FRONDS = createLeafParticle(
-		WWConstants.id("palm_fronds"),
-		WWBlocks.PALM_FRONDS,
-		0.00055F,
-		() -> WWAmbienceAndMiscConfig.Client.PALM_FROND_FREQUENCY,
-		6,
-		4.5F,
 		5F,
 		false,
 		true

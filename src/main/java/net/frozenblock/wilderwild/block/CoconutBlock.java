@@ -94,16 +94,6 @@ public class CoconutBlock extends FallingBlock implements BonemealableBlock {
 	}
 
 	@NotNull
-	public static BlockState getDefaultHangingState() {
-		return getHangingState(0);
-	}
-
-	@NotNull
-	public static BlockState getHangingState(int age) {
-		return WWBlocks.COCONUT.defaultBlockState().setValue(HANGING, true).setValue(AGE, age);
-	}
-
-	@NotNull
 	@Override
 	protected MapCodec<? extends CoconutBlock> codec() {
 		return CODEC;
@@ -167,14 +157,6 @@ public class CoconutBlock extends FallingBlock implements BonemealableBlock {
 		}
 
 		return voxelShape.move(vec3d.x, vec3d.y, vec3d.z);
-	}
-
-	@Override
-	public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos pos) {
-		BlockState stateAbove = level.getBlockState(pos.above());
-		return state.is(this) && isHanging(state) ?
-			stateAbove.is(WWBlocks.PALM_FRONDS) && (stateAbove.getValue(BlockStateProperties.DISTANCE) <= VALID_FROND_DISTANCE || stateAbove.getValue(BlockStateProperties.PERSISTENT))
-			: this.mayPlaceOn(level.getBlockState(pos.below()));
 	}
 
 	protected boolean mayPlaceOn(@NotNull BlockState state) {
@@ -269,7 +251,6 @@ public class CoconutBlock extends FallingBlock implements BonemealableBlock {
 
 	@Override
 	public void onBrokenAfterFall(@NotNull Level level, @NotNull BlockPos pos, @NotNull FallingBlockEntity fallingBlock) {
-		level.addFreshEntity(new ItemEntity(level, pos.getX() + 0.5D, pos.getY(), pos.getZ() + 0.5D, new ItemStack(WWItems.COCONUT, 3)));
 		level.playSound(null, pos, WWSounds.BLOCK_COCONUT_BREAK, SoundSource.BLOCKS, 1F, 1F);
 	}
 

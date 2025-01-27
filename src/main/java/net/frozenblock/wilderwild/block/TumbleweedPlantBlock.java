@@ -19,43 +19,26 @@
 package net.frozenblock.wilderwild.block;
 
 import com.mojang.serialization.MapCodec;
-import net.frozenblock.wilderwild.entity.Tumbleweed;
-import net.frozenblock.wilderwild.registry.WWBlocks;
-import net.frozenblock.wilderwild.registry.WWEntityTypes;
-import net.frozenblock.wilderwild.registry.WWSounds;
 import net.frozenblock.wilderwild.tag.WWBlockTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.BushBlock;
-import net.minecraft.world.level.block.LevelEvent;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 public class TumbleweedPlantBlock extends BushBlock implements BonemealableBlock {
 	public static final MapCodec<TumbleweedPlantBlock> CODEC = simpleCodec(TumbleweedPlantBlock::new);
@@ -89,25 +72,6 @@ public class TumbleweedPlantBlock extends BushBlock implements BonemealableBlock
 
 	@Override
 	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos pos, @NotNull RandomSource random) {
-		if (random.nextInt(RANDOM_TICK_CHANCE) == 0) {
-			if (isFullyGrown(state)) {
-				if (random.nextInt(SNAP_CHANCE) == 0) {
-					level.setBlock(pos, state.cycle(AGE), UPDATE_CLIENTS);
-					Tumbleweed weed = new Tumbleweed(WWEntityTypes.TUMBLEWEED, level);
-					level.addFreshEntity(weed);
-					weed.setPos(Vec3.atBottomCenterOf(pos));
-					int diff = level.getDifficulty().getId();
-					if (level.getRandom().nextInt(diff == 0 ? REPRODUCTION_CHANCE_PEACEFUL : (REPRODUCTION_CHANCE_DIVIDER_BY_DIFFICULTY / diff)) == 0) {
-						weed.setItem(new ItemStack(WWBlocks.TUMBLEWEED_PLANT), true);
-					}
-					level.playSound(null, pos, WWSounds.ENTITY_TUMBLEWEED_DAMAGE, SoundSource.BLOCKS, 1F, 1F);
-					level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(state));
-					level.gameEvent(null, GameEvent.BLOCK_CHANGE, pos);
-				}
-			} else {
-				level.setBlock(pos, state.cycle(AGE), UPDATE_CLIENTS);
-			}
-		}
 	}
 
 	@NotNull
@@ -140,30 +104,6 @@ public class TumbleweedPlantBlock extends BushBlock implements BonemealableBlock
 	@Override
 	public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos pos, @NotNull BlockState state) {
 		level.setBlockAndUpdate(pos, state.setValue(AGE, Math.min(MAX_AGE, state.getValue(AGE) + random.nextIntBetweenInclusive(1, 2))));
-	}
-
-	@Override
-	public InteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-		if (stack.is(Items.SHEARS) && onShear(level, pos, state, player)) {
-			stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
-			return InteractionResult.SUCCESS;
-		} else {
-			return super.useItemOn(stack, state, level, pos, player, hand, hit);
-		}
-	}
-
-	public static boolean onShear(Level level, BlockPos pos, @NotNull BlockState state, @Nullable Entity entity) {
-		if (isFullyGrown(state)) {
-			if (!level.isClientSide) {
-				Tumbleweed.spawnFromShears(level, pos);
-				level.levelEvent(LevelEvent.PARTICLES_DESTROY_BLOCK, pos, Block.getId(state));
-				level.setBlockAndUpdate(pos, state.setValue(AGE, 0));
-				level.gameEvent(entity, GameEvent.SHEAR, pos);
-			}
-			return true;
-		} else {
-			return false;
-		}
 	}
 
 	@Override

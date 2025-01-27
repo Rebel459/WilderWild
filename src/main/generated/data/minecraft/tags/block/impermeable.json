@@ -1,9 +1,0 @@
-{
-  "values": [
-    "wilderwild:echo_glass",
-    {
-      "id": "#wilderwild:mesoglea",
-      "required": false
-    }
-  ]
-}

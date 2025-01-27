@@ -21,38 +21,16 @@ package net.frozenblock.wilderwild.client;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
-import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.frozenblock.wilderwild.WWConstants;
-import net.frozenblock.wilderwild.client.model.ButterflyModel;
-import net.frozenblock.wilderwild.client.model.CrabModel;
-import net.frozenblock.wilderwild.client.model.JellyfishModel;
-import net.frozenblock.wilderwild.client.model.OstrichInbredModel;
-import net.frozenblock.wilderwild.client.model.OstrichModel;
 import net.frozenblock.wilderwild.client.model.StoneChestModel;
-import net.frozenblock.wilderwild.client.model.TumbleweedModel;
-import net.frozenblock.wilderwild.client.renderer.blockentity.DisplayLanternRenderer;
 import net.frozenblock.wilderwild.client.renderer.blockentity.HangingTendrilRenderer;
 import net.frozenblock.wilderwild.client.renderer.blockentity.SculkSensorRenderer;
 import net.frozenblock.wilderwild.client.renderer.blockentity.StoneChestRenderer;
-import net.frozenblock.wilderwild.client.renderer.entity.ButterflyRenderer;
-import net.frozenblock.wilderwild.client.renderer.entity.CrabRenderer;
-import net.frozenblock.wilderwild.client.renderer.entity.FireflyRenderer;
-import net.frozenblock.wilderwild.client.renderer.entity.FlowerCowRenderer;
-import net.frozenblock.wilderwild.client.renderer.entity.JellyfishRenderer;
-import net.frozenblock.wilderwild.client.renderer.entity.OstrichRenderer;
-import net.frozenblock.wilderwild.client.renderer.entity.ScorchedRenderer;
-import net.frozenblock.wilderwild.client.renderer.entity.TumbleweedRenderer;
 import net.frozenblock.wilderwild.registry.WWBlockEntityTypes;
-import net.frozenblock.wilderwild.registry.WWEntityTypes;
 import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.CowModel;
-import net.minecraft.client.model.SpiderModel;
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderers;
-import net.minecraft.client.renderer.entity.BoatRenderer;
-import net.minecraft.client.renderer.entity.NoopRenderer;
-import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 
 @Environment(EnvType.CLIENT)
@@ -88,41 +66,6 @@ public final class WWModelLayers {
 	public static final ModelLayerLocation MAPLE_CHEST_BOAT = new ModelLayerLocation(WWConstants.id("chest_boat/maple"), "main");
 
 	public static void init() {
-		EntityRendererRegistry.register(WWEntityTypes.FIREFLY, FireflyRenderer::new);
-
-		EntityRendererRegistry.register(WWEntityTypes.BUTTERFLY, ButterflyRenderer::new);
-		EntityModelLayerRegistry.registerModelLayer(BUTTERFLY, ButterflyModel::createBodyLayer);
-
-		EntityRendererRegistry.register(WWEntityTypes.JELLYFISH, JellyfishRenderer::new);
-		EntityModelLayerRegistry.registerModelLayer(JELLYFISH, JellyfishModel::createBodyLayer);
-
-		EntityRendererRegistry.register(WWEntityTypes.TUMBLEWEED, TumbleweedRenderer::new);
-		EntityModelLayerRegistry.registerModelLayer(TUMBLEWEED, TumbleweedModel::createBodyLayer);
-
-		EntityRendererRegistry.register(WWEntityTypes.CRAB, CrabRenderer::new);
-		EntityModelLayerRegistry.registerModelLayer(CRAB, CrabModel::createBodyLayer);
-
-		EntityRendererRegistry.register(WWEntityTypes.OSTRICH, OstrichRenderer::new);
-
-		EntityModelLayerRegistry.registerModelLayer(OSTRICH, OstrichModel::createBodyLayer);
-		EntityModelLayerRegistry.registerModelLayer(OSTRICH_BABY, OstrichModel::createBabyBodyLayer);
-		EntityModelLayerRegistry.registerModelLayer(OSTRICH_INBRED, OstrichInbredModel::createBodyLayer);
-		EntityModelLayerRegistry.registerModelLayer(OSTRICH_BABY_INBRED, OstrichInbredModel::createBabyBodyLayer);
-		EntityModelLayerRegistry.registerModelLayer(OSTRICH_SADDLE, OstrichModel::createBodyLayer);
-		EntityModelLayerRegistry.registerModelLayer(OSTRICH_BABY_SADDLE, OstrichModel::createBabyBodyLayer);
-
-		EntityRendererRegistry.register(WWEntityTypes.SCORCHED, ScorchedRenderer::new);
-		EntityModelLayerRegistry.registerModelLayer(SCORCHED, SpiderModel::createSpiderBodyLayer);
-
-		EntityRendererRegistry.register(WWEntityTypes.MOOBLOOM, FlowerCowRenderer::new);
-		EntityModelLayerRegistry.registerModelLayer(MOOBLOOM, CowModel::createBodyLayer);
-		EntityModelLayerRegistry.registerModelLayer(MOOBLOOM_BABY, () -> CowModel.createBodyLayer().apply(CowModel.BABY_TRANSFORMER));
-
-		EntityRendererRegistry.register(WWEntityTypes.COCONUT, ThrownItemRenderer::new);
-
-		EntityRendererRegistry.register(WWEntityTypes.CHEST_BUBBLER, NoopRenderer::new);
-		EntityRendererRegistry.register(WWEntityTypes.SCULK_SPREADER, NoopRenderer::new);
-		EntityRendererRegistry.register(WWEntityTypes.FALLING_LEAVES, NoopRenderer::new);
 
 		BlockEntityRenderers.register(BlockEntityType.SCULK_SENSOR, SculkSensorRenderer::new);
 		BlockEntityRenderers.register(BlockEntityType.CALIBRATED_SCULK_SENSOR, SculkSensorRenderer::new);
@@ -131,24 +74,11 @@ public final class WWModelLayers {
 		BlockEntityRenderers.register(WWBlockEntityTypes.HANGING_TENDRIL, HangingTendrilRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(HANGING_TENDRIL, HangingTendrilRenderer::getTexturedModelData);
 
-		BlockEntityRenderers.register(WWBlockEntityTypes.DISPLAY_LANTERN, DisplayLanternRenderer::new);
-		EntityModelLayerRegistry.registerModelLayer(DISPLAY_LANTERN, DisplayLanternRenderer::getTexturedModelData);
-
 		BlockEntityRenderers.register(WWBlockEntityTypes.STONE_CHEST, StoneChestRenderer::new);
 		EntityModelLayerRegistry.registerModelLayer(STONE_CHEST, StoneChestModel::createSingleBodyLayer);
 		EntityModelLayerRegistry.registerModelLayer(DOUBLE_STONE_CHEST_LEFT, StoneChestModel::createDoubleBodyLeftLayer);
 		EntityModelLayerRegistry.registerModelLayer(DOUBLE_STONE_CHEST_RIGHT, StoneChestModel::createDoubleBodyRightLayer);
 
-
-		// BOATS
-		EntityRendererRegistry.register(WWEntityTypes.BAOBAB_BOAT, context -> new BoatRenderer(context, BAOBAB_BOAT));
-		EntityRendererRegistry.register(WWEntityTypes.BAOBAB_CHEST_BOAT, context -> new BoatRenderer(context, BAOBAB_CHEST_BOAT));
-		EntityRendererRegistry.register(WWEntityTypes.CYPRESS_BOAT, context -> new BoatRenderer(context, CYPRESS_BOAT));
-		EntityRendererRegistry.register(WWEntityTypes.CYPRESS_CHEST_BOAT, context -> new BoatRenderer(context, CYPRESS_CHEST_BOAT));
-		EntityRendererRegistry.register(WWEntityTypes.PALM_BOAT, context -> new BoatRenderer(context, PALM_BOAT));
-		EntityRendererRegistry.register(WWEntityTypes.PALM_CHEST_BOAT, context -> new BoatRenderer(context, PALM_CHEST_BOAT));
-		EntityRendererRegistry.register(WWEntityTypes.MAPLE_BOAT, context -> new BoatRenderer(context, MAPLE_BOAT));
-		EntityRendererRegistry.register(WWEntityTypes.MAPLE_CHEST_BOAT, context -> new BoatRenderer(context, MAPLE_CHEST_BOAT));
 
 		LayerDefinition boat = BoatModel.createBoatModel();
 		LayerDefinition chestBoat = BoatModel.createChestBoatModel();

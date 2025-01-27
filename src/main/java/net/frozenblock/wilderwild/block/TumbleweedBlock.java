@@ -20,7 +20,6 @@ package net.frozenblock.wilderwild.block;
 
 import com.mojang.serialization.MapCodec;
 import net.frozenblock.wilderwild.block.impl.SnowloggingUtils;
-import net.frozenblock.wilderwild.entity.Tumbleweed;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.tags.BlockTags;
@@ -69,26 +68,6 @@ public class TumbleweedBlock extends BushBlock implements SimpleWaterloggedBlock
 	@Override
 	protected MapCodec<? extends TumbleweedBlock> codec() {
 		return CODEC;
-	}
-
-	@Override
-	public InteractionResult useItemOn(@NotNull ItemStack stack, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos pos, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hit) {
-		if (stack.is(Items.SHEARS)) {
-			onShear(level, pos, player);
-			stack.hurtAndBreak(1, player, LivingEntity.getSlotForHand(hand));
-			return InteractionResult.SUCCESS;
-		} else {
-			return super.useItemOn(stack, state, level, pos, player, hand, hit);
-		}
-	}
-
-	public static boolean onShear(@NotNull Level level, BlockPos pos, @Nullable Entity entity) {
-		if (!level.isClientSide) {
-			Tumbleweed.spawnFromShears(level, pos);
-			level.setBlockAndUpdate(pos, Blocks.AIR.defaultBlockState());
-			level.gameEvent(entity, GameEvent.SHEAR, pos);
-		}
-		return true;
 	}
 
 	@Nullable

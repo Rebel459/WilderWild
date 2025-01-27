@@ -23,10 +23,8 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.function.Supplier;
 import net.frozenblock.wilderwild.block.LeafLitterBlock;
-import net.frozenblock.wilderwild.entity.FallingLeafTicker;
 import net.frozenblock.wilderwild.particle.options.LeafClusterParticleOptions;
 import net.frozenblock.wilderwild.particle.options.WWFallingLeavesParticleOptions;
-import net.frozenblock.wilderwild.registry.WWEntityTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.BlockParticleOption;
@@ -133,12 +131,6 @@ public class FallingLeafUtil {
 						0.05D
 					);
 					sendLeafClusterParticle(world, pos, fallingLeafData);
-					fallingLeafData.leafLitterBlock.ifPresent(leafLitterBlock -> FallingLeafTicker.createAndSpawn(
-						WWEntityTypes.FALLING_LEAVES,
-						world,
-						pos,
-						leafLitterBlock
-					));
 				}
 			}
 		}

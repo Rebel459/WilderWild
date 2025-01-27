@@ -26,8 +26,6 @@ import net.frozenblock.lib.config.api.registry.ConfigRegistry;
 import net.frozenblock.lib.config.api.sync.annotation.EntrySyncData;
 import static net.frozenblock.wilderwild.WWConstants.MOD_ID;
 import net.frozenblock.wilderwild.WWPreLoadConstants;
-import net.frozenblock.wilderwild.worldgen.impl.conditionsource.BetaBeachConditionSource;
-import net.frozenblock.wilderwild.worldgen.impl.conditionsource.SnowUnderMountainConditionSource;
 
 public final class WWWorldgenConfig {
 
@@ -46,14 +44,7 @@ public final class WWWorldgenConfig {
 				this.onSync(null);
 			}
 
-			@Override
-			public void onSync(WWWorldgenConfig sync) {
-				var config = this.config();
-				BetaBeachConditionSource.GENERATE = config.betaBeaches;
-				SnowUnderMountainConditionSource.GENERATE = config.snowUnderMountains;
-				GENERATE_POLLEN = config.pollen;
-				NEW_WITCH_HUTS = config.newWitchHuts;
-			}
+
 		}
 	);
 

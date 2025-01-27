@@ -20,7 +20,6 @@ package net.frozenblock.wilderwild.registry;
 
 import java.util.Set;
 import net.frozenblock.wilderwild.WWConstants;
-import net.frozenblock.wilderwild.block.entity.DisplayLanternBlockEntity;
 import net.frozenblock.wilderwild.block.entity.GeyserBlockEntity;
 import net.frozenblock.wilderwild.block.entity.HangingTendrilBlockEntity;
 import net.frozenblock.wilderwild.block.entity.ScorchedBlockEntity;
@@ -59,11 +58,6 @@ public final class WWBlockEntityTypes {
 		"termite_mound",
 		TermiteMoundBlockEntity::new,
 		WWBlocks.TERMITE_MOUND
-	);
-	public static final BlockEntityType<DisplayLanternBlockEntity> DISPLAY_LANTERN = register(
-		"display_lantern",
-		DisplayLanternBlockEntity::new,
-		WWBlocks.DISPLAY_LANTERN
 	);
 	public static final BlockEntityType<StoneChestBlockEntity> STONE_CHEST = register(
 		"stone_chest",
